@@ -1,0 +1,192 @@
+/* -------------------- *\
+    #NAVBAR
+\* -------------------- */
+
+/**
+ * Navbar base styles
+ */
+
+@navbar-height:                             70px;
+@navbar-default-bg:                         @primary-dark;
+@navbar-default-border:                     transparent;
+@navbar-default-brand-color:                @navbar-link-custom;
+@navbar-default-brand-hover-color:          @navbar-active-custom;
+@navbar-default-color:                      @navbar-text-custom;
+@navbar-default-link-color:                 @navbar-link-custom;
+@navbar-default-link-hover-color:           @navbar-active-custom;
+@navbar-default-link-hover-bg:              @primary-dark;
+@navbar-default-link-active-color:          @navbar-active-custom;
+@navbar-default-link-active-bg:             @primary-dark;
+@navbar-default-link-disabled-color:        @navbar-text-custom;
+@navbar-default-toggle-hover-bg:            fade(black, 20%);
+@navbar-default-toggle-icon-bar-bg:         @navbar-link-custom;
+@grid-float-breakpoint:                     @screen-md-min;
+@navbar-margin-bottom:                      @line-height-computed;
+
+.navbar-default {
+  border-bottom: 0;
+  .box-shadow(0 3px 3px fade(@gray-base,15%));
+}
+
+
+/**
+ * Navbar links
+ */
+
+.navbar-brand,
+.navbar-nav > li > a,
+.topbar-nav > li > a {
+  .roboto-slab;
+  .transition(color .1s);
+}
+
+@media(max-width: @grid-float-breakpoint-max) {
+  .navbar-default .navbar-nav {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top: 1px solid fade(black, 30%);
+
+    > li {
+
+      > a {
+        border-top: 1px solid fade(white, 10%);
+        border-bottom: 1px solid fade(black, 20%);
+      }
+    }
+  }
+}
+
+/**
+ * Brand name
+ */
+
+.navbar-default .navbar-brand {
+  font-size: 18px;
+}
+
+/**
+ * Toggle button
+ */
+
+.navbar-default .navbar-toggle {
+  background: fade(black, 20%);
+  border-color: fade(black, 20%);
+  .box-shadow(0 0 1px 1px fade(white,10%));
+  .transition(all .2s);
+
+  &:hover, &:focus {
+    .box-shadow(0 0 1px 1px fade(white,10%));
+  }
+}
+
+/**
+ * Navbar search (for collapsed menu only)
+ */
+
+.navbar-default .navbar-form {
+  .form-control {
+    .box-shadow(none);
+
+    &:focus {
+      border-color: #CCC;
+    }
+  }
+}
+
+@media(max-width: @grid-float-breakpoint-max) {
+  .navbar-default .navbar-form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+
+    .form-group, .form-control {
+      display: block;
+      width: 100%;      
+    }
+  }
+}
+
+/**
+ * Topbar
+ */
+
+@topbar-height: 40px;
+
+.topbar {
+  position: relative;
+  height: @topbar-height;
+  background: @primary-dark;
+
+  &:after {
+    .clearfix();
+  }
+}
+.topbar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin:  0;
+
+  > li {
+    display: inline-block;
+
+    > a {
+      display: block;
+      padding: (@topbar-height - @line-height-computed)/2px 5px;
+      color: @topbar-link-custom;
+      text-decoration: none;
+      font-size: @font-size-small;
+      font-weight: 500;
+
+      &:hover, &:focus {
+        color: @navbar-active-custom;
+      }
+    }
+  }
+}
+.topbar-nav_left {
+  float: left;
+  margin-left: -5px;
+}
+.topbar-nav_right {
+  float: right;
+  margin-right: -5px;
+}
+
+/* Topbar search */
+
+.topbar__search {
+  padding-top:    (@topbar-height - 25px)/2;
+  padding-bottom: (@topbar-height - 25px)/2;
+
+  > .form-control {
+    display: inline-block;
+    width: 180px;
+    height: 25px;
+    vertical-align: center;
+    border: 1px solid fade(@gray-base,40%);
+    background: #f9f9f9;
+    color: @text-color;
+    .box-shadow(none);
+    .transition(all .1s);
+    .placeholder(@gray-light);
+
+    &:focus {
+      background: white;
+      .placeholder(@gray-light);
+    }
+  }
+  > button {
+    background: none;
+    border: 0;
+    color: @navbar-link-custom;
+    text-decoration: none;
+    outline: none;
+    .transition(color .1s);
+
+    &:hover, &:focus {
+      color: @navbar-active-custom;
+    }
+  }
+}

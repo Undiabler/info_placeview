@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+
+    <title>PlaceView Info</title>
+
+    <!-- CSS Global -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- CSS Plugins -->
+    <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700' rel='stylesheet' type='text/css'>
+
+    <link href="css/placeview.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--custom css-->
+    <link href="css/placeview.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- PRELOADER (uncomment to enable)
+    ============================== -->
+    <!-- <div class="preloader">
+      <img src="img/preloader.gif" alt="Loading..." class="preloader__img">
+    </div> -->
+    <div class="navbar__hr hidden-xs hidden-sm"></div>
+
+    <!-- STATIC NAVBAR
+    ============================== -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Toggle button -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Brand name -->
+          <a class="navbar-brand" href="index.html">
+            <img src="img/logo_beta.png">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <!-- Navbar links -->
+          <ul class="nav navbar-nav navbar-right">
+
+            <li>
+              <a href="#">
+                <i class="fa fa-home"></i> Главная
+              </a>
+            </li>
+            <li>
+              <a href="version.html">
+               <i class="fa fa-code-fork"></i> Версии
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-info-circle"></i> О нас 
+              </a>
+            </li>
+          </ul>
+          <!-- Search form (for collapsed menu only) -->
+          <form class="navbar-form navbar-left visible-xs visible-sm" role="search">
+            <div class="form-group">
+              <label class="sr-only" for="nav-search-xs">Search</label>
+              <input type="search" class="form-control" id="nav-search-xs" placeholder="Search here...">
+            </div>
+          </form>
+        </div> <!-- / .navbar-collapse -->
+      </div> <!-- / .container -->
+    </div> <!-- / .navbar -->
+
+
+    <!-- PAGE HEADER
+    ============================== -->
+    <div class="page__header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="page-header__title">Info</h3>
+            <ol class="breadcrumb page-header__breadcrumb">
+              <li><a href="index.html">PlaceView</a></li>
+              <li class="active">info</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PAGE CONTENT
+    ============================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-2">
+
+          <!-- Gategories -->
+          <h3 class="header">Categories</h3>
+          <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
+            <a href="#ui_typography" class="list-group-item">Typography</a>
+            <a href="#ui_tables" class="list-group-item">Tables</a>
+            <a href="#ui_buttons" class="list-group-item">Buttons</a>
+            <a href="#ui_tabs" class="list-group-item">Tabs</a>
+            <a href="#ui_pills" class="list-group-item">Pills</a>
+            <a href="#ui_pagination" class="list-group-item">Pagination</a>
+            <a href="#ui_pager" class="list-group-item">Pager</a>
+            <a href="#ui_progress-bars" class="list-group-item">Progress bars</a>
+            <a href="#ui_list-groups" class="list-group-item">List groups</a>
+            <a href="#ui_panels" class="list-group-item">Panels</a>
+            <a href="#ui_accordion" class="list-group-item">Accordion</a>
+            <a href="#ui_carousel" class="list-group-item">Carousel</a>
+          </div> <!--  / .list-group -->
+        </div>
+        <div class="col-sm-9 col-md-10">
+          
+          <!-- Typography -->
+          <div class="ui__section" id="ui_typography">
+            <div class="blog__items">
+            <div class="blog__item">
+              <div class="blog__content">
+                <h3 class="blog__title">
+                  <a href="blog-post.html">Sed lacinia suscipit lacus non sodales. Pellentesque lacinia ornare justo eu tincidunt</a>
+                </h3>
+                <ul class="blog__info">
+                  <li><time datetime="2015-01-30">January 30, 2015</time></li>
+                  <li><a href="#">Bootstrap</a></li>
+                  <li><a href="#"><i class="fa fa-comments-o"></i> 2</a></li>
+                </ul>
+                <div class="blog__body" id="article_info">
+                  <img src="img/general_1.jpg" alt="..." class="img-responsive blog__img">
+                  <p>
+                    Nam ultrices, orci sit amet dignissim dignissim, tellus elit consequat dui, eu venenatis urna nisi non est. Aliquam egestas pulvinar ornare. Aenean et vulputate lacus. Ut eget purus ut ante imperdiet feugiat quis vel elit. Donec imperdiet enim quis risus porttitor congue. Vestibulum vel tristique urna. Pellentesque nulla leo, laoreet sed luctus eu, dapibus id lorem. Pellentesque eu tincidunt odio. Proin imperdiet bibendum mauris, ut bibendum odio mollis id.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget efficitur nulla, a egestas mi. Cras hendrerit ipsum in tellus consequat sollicitudin. Quisque felis est, dictum nec ante nec, egestas blandit purus. Donec posuere suscipit arcu, eu ullamcorper turpis lobortis et. Nullam viverra tincidunt elit, ac tempus dui iaculis eu. Vivamus eget urna eu purus ultricies scelerisque. Vivamus laoreet bibendum nunc, in ullamcorper tortor euismod nec. Sed a lobortis purus.
+                  </p>
+                  <p>
+                    Cras lobortis pharetra ante sed sagittis. Ut euismod dignissim massa in sollicitudin. Cras tempus urna ut pellentesque lobortis. Nunc bibendum, lorem a blandit scelerisque, velit erat eleifend risus, et pellentesque libero augue non massa. Donec volutpat dui sed fringilla mattis. Mauris aliquet elementum facilisis. Nullam a ligula nec massa vestibulum efficitur. In cursus lacus ut sapien sodales, ac vestibulum sem pretium. Pellentesque nisi nulla, hendrerit consectetur mi eu, blandit pulvinar eros. Nulla fermentum fermentum ante, eu luctus velit laoreet ut. Fusce nec diam id purus pellentesque mollis venenatis at libero. Suspendisse eu dapibus diam, ac accumsan felis.
+                  </p>
+                  <p>
+                    In condimentum ullamcorper justo, ac accumsan tellus. Sed id maximus libero, ut euismod nisi. In hac habitasse platea dictumst. Pellentesque eget convallis lorem. Nullam eget augue rhoncus odio dictum gravida eget at nisi. Maecenas sit amet magna faucibus, malesuada elit vitae, fringilla erat. Ut sollicitudin, augue eu lacinia sagittis, nulla nisi efficitur risus, id posuere tellus sapien sed nisi.
+                  </p>
+                </div>
+              </div>
+            </div> <!-- / .blog__item -->
+
+            <!-- New comment -->
+            <div class="comment comment_new">
+              <div class="comment__author_img">
+                <img class="img-responsive" alt="..." src="img/photo_4.jpg">
+              </div>
+              <div class="comment__content">
+                <form>
+                  <div class="form-group">
+                    <label for="comment-new__textarea" class="sr-only">Enter your comment</label>
+                    <textarea class="form-control" rows="2" id="comment-new__textarea" placeholder="Enter your comment"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Send Comment</button>
+                </form>
+              </div> <!-- / .comment__content -->
+            </div> <!-- / .comment__new -->
+
+            <!-- Comments header -->
+            <div class="comment__header">
+              <span>List of Comments</span>
+            </div>
+
+            <!-- All comments -->
+            <div class="comment">
+              <div class="comment__author_img">
+                <img src="img/photo_1.jpg" alt="..." class="img-responsive">
+              </div>
+              <div class="comment__content">
+                <div class="comment__author_name">John Doe</div>
+                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
+                </div>
+              </div> <!-- / .comment__content -->
+            </div> <!-- / .comment -->
+            <div class="comment comment_answer_1">
+              <div class="comment__author_img">
+                <img src="img/photo_2.jpg" alt="..." class="img-responsive">
+              </div>
+              <div class="comment__content">
+                <div class="comment__author_name">Judy Doe</div>
+                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
+                </div>
+              </div> <!-- / .comment__content -->
+            </div> <!-- / .comment -->
+            <div class="comment comment_answer_2">
+              <div class="comment__author_img">
+                <img src="img/photo_3.jpg" alt="..." class="img-responsive">
+              </div>
+              <div class="comment__content">
+                <div class="comment__author_name">Richard Roe</div>
+                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
+                </div>
+              </div> <!-- / .comment__content -->
+            </div> <!-- / .comment -->
+            <div class="comment">
+              <div class="comment__author_img">
+                <img src="img/photo_4.jpg" alt="..." class="img-responsive">
+              </div>
+              <div class="comment__content">
+                <div class="comment__author_name">John Doe</div>
+                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
+                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
+                </div>
+              </div> <!-- / .comment__content -->
+            </div> <!-- / .comment -->
+
+          </div>
+          </div> <!-- / .ui__section -->
+        </div>
+      </div> <!-- / .row -->
+    </div>
+    
+
+    <!-- FOOTER
+    ============================== -->
+    <footer>
+
+      
+      <div class="footer__hr hidden-xs"></div>
+
+      <!-- Footer Bottom -->
+      <div class="footer_bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div class="footer__copyright">
+                Copyright 2015
+                <a href="http://placeview.in/">
+                  Placeview.in
+                </a>. All Rights Reserved.
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <ul class="footer__social">
+                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+              </ul>
+            </div>
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </div> <!-- / .footer_bottom -->
+    </footer>
+
+
+	<!-- Javascript
+    ============================== -->
+
+    <!-- JS Global -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JS Plugins -->
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/scrolltopcontrol.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <!-- JS Custom -->
+    <script src="js/custom.js"></script>
+    <script src="js/custom_ui-nav.js"></script>
+    <script src="js/custom_info.js"></script>
+
+
+
+  </body>
+</html>

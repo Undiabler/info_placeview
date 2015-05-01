@@ -1,0 +1,45 @@
+/* -------------------- *\
+    #ACCORDION
+\* -------------------- */
+
+
+/**
+ * Accordion base styles
+ */
+
+.panel-group > .panel {
+  border: 0;
+  .box-shadow(0 1px 3px fade(black,30%));
+  
+  /* Panel Title */
+  .panel-title {
+    padding-top: @padding-base-vertical;
+    padding-bottom: @padding-base-vertical;
+
+    > a {
+      display: block;
+      position: relative;
+      padding-right: 20px;
+      font-size: @font-size-base;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+
+      &::after {
+        position: absolute;
+        right: 0;
+        content: "\f139";
+        font-family: FontAwesome;
+        color: #ddd;
+      }
+
+      &.collapsed::after {
+        content: "\f13a";
+      }
+    }
+  }
+}
+.panel-group > .panel-default > .panel-heading {
+  background: white;
+}

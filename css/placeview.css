@@ -1,0 +1,15 @@
+.navbar-brand img{
+	width: 130px;
+	margin-top: -5px;
+}
+.portfolio__img img:hover, .portfolio__img img:focus {
+	-webkit-transform: rotate(0deg) scale(1.1, 1.1);
+	-ms-transform: rotate(0deg) scale(1.1, 1.1);
+	transform: rotate(0deg) scale(1.1, 1.1);
+}
+#article_info{
+	font-size: 13pt;
+}
+#tree span.features__intro{
+	font-size: 16px;
+}

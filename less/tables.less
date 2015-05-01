@@ -1,0 +1,35 @@
+/* -------------------- *\
+    #TABLES
+\* -------------------- */
+
+
+@table-border-color: @gray-lighter;
+
+/**
+ * Tables base styles
+ */
+
+.table > thead > tr {
+  > th,
+  > td {
+    background: @primary-dark;
+    border-bottom: 0;
+    color: white;
+    font-weight: 400;
+  }
+}
+.table-bordered > thead > tr {
+  > th,
+  > td {
+    border-width: 1px 1px 0 !important;
+    border-style: solid !important;
+    border-color: @primary-dark - #111111 !important;
+    margin-bottom: 2px;
+  }
+}
+.table-bordered > tbody > tr:first-child {
+  > th,
+  > td {
+    border-top: 0;
+  }
+}

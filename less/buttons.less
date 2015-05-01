@@ -1,0 +1,65 @@
+/* -------------------- *\
+    #BUTTONS
+\* -------------------- */
+
+
+/**
+ * Buttons base styles
+ */
+
+#button {
+  .btn(@btn-color; @btn-font-color) {
+    border-color: fade(@gray-base, 10%);
+    background: @btn-color;
+    #gradient > .vertical(lighten(@btn-color, 3%); darken(@btn-color,3%));
+    color: @btn-font-color;
+    text-shadow: 0 -1px 0 fade(@gray-base,20%);
+
+    &:hover, &:focus, &:active, &:active:focus {
+      border-color: fade(@gray-base, 10%);
+      background: darken(@btn-color, 3%);
+      #gradient > .vertical(@btn-color; darken(@btn-color, 7%));
+      color: @btn-font-color;
+      outline: none;
+    }
+  }
+}
+.btn, .btn-lg, .btn-sm, .btn-xs {
+  border-radius: @border-radius-small;
+}
+
+/* Default button */
+
+.btn-default {
+  #button > .btn(@gray-lighter; @text-color);
+}
+
+/* Primary button */
+
+.btn-primary {
+  #button > .btn(@accent-base; white);
+}
+
+/* Info success */
+
+.btn-success {
+  #button > .btn(@brand-success; white);
+}
+
+/* Info button */
+
+.btn-info {
+  #button > .btn(@brand-info; white);
+}
+
+/* Info warning */
+
+.btn-warning {
+  #button > .btn(@brand-warning; white);
+}
+
+/* Info danger */
+
+.btn-danger {
+  #button > .btn(@brand-danger; white);
+}

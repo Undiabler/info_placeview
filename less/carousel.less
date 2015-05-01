@@ -1,0 +1,103 @@
+/* -------------------- *\
+    #CAROUSEL
+\* -------------------- */
+
+
+/**
+ * Carousel base styles
+ */
+
+/* Carousel indicators */
+
+.carousel-indicators {
+  > li {
+    width: 15px;
+    height: 6px;
+    margin: 0;
+    background-color: fade(white, 50%);
+    border: 0;
+    border-radius: 0;
+    .transition(background-color .2s);
+
+    &.active {
+      width: 15px;
+      height: 6px;
+      background-color: @accent-base;
+    }
+  }
+}
+
+/* Carousel controls */
+
+.carousel-control,
+.carousel-control.left,
+.carousel-control.right {
+  top: 50%;
+  margin-top: -25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: @accent-base;
+  background-image: none;
+  text-align: center;
+  .reset-filter();
+  .box-shadow(0 1px 3px fade(black,30%));
+  .opacity(0);
+  .transition(all .2s);
+  
+  > i {
+    line-height: 50px;
+    font-size: 24px;
+    color: white;
+  }
+}
+.carousel-control.left {
+  left: 0;
+  right: auto;
+}
+.carousel-control.right {
+  right: 0;
+  left: auto;
+}
+.carousel:hover {
+  .carousel-control {
+    .opacity(1);
+  }
+  .carousel-control.left {
+    left: 20px;
+  }
+  .carousel-control.right {
+    right: 20px;
+  }
+}
+
+@media(max-width: @screen-sm-max) {
+  .carousel-control,
+  .carousel-control.left,
+  .carousel-control.right {
+    .opacity(.5);
+
+    &:focus {
+      .opacity(1) !important;
+    }
+  }
+  .carousel-control.left {
+    left: 10px;
+  }
+  .carousel-control.right {
+    right: 10px;
+  }
+  .carousel:hover {
+    .carousel-control,
+    .carousel-control.left,
+    .carousel-control.right {
+      .opacity(.5);
+    }
+    .carousel-control.left {
+      left: 10px;
+    }
+    .carousel-control.right {
+      right: 10px;
+    }
+  }
+}

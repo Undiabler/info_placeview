@@ -1,0 +1,59 @@
+/* -------------------- *\
+    #UTILITIES
+\* -------------------- */
+
+
+/**
+ * Animations
+ */
+
+/* Animation delays */
+
+@delay-step: .5s;
+
+.delay_1 {
+  .animation-delay(@delay-step);
+}
+.delay_2 {
+  .animation-delay(@delay-step*2);
+}
+.delay_3 {
+  .animation-delay(@delay-step*3);
+}
+.delay_4 {
+  .animation-delay(@delay-step*4);
+}
+.delay_5 {
+  .animation-delay(@delay-step*5);
+}
+.delay_6 {
+  .animation-delay(@delay-step*6);
+}
+.delay_7 {
+  .animation-delay(@delay-step*7);
+}
+.delay_8 {
+  .animation-delay(@delay-step*8);
+}
+.delay_9 {
+  .animation-delay(@delay-step*9);
+}
+.delay_10 {
+  .animation-delay(@delay-step*10);
+}
+
+/**
+ * Other
+ */
+
+hr.hr_lg {
+  margin-top: @line-height-computed*2;
+  margin-bottom: @line-height-computed*2;
+}
+
+@media(min-width: @screen-sm-min) {
+  hr.hr_lg {
+    margin-top: @line-height-computed*3;
+    margin-bottom: @line-height-computed*3;
+  }
+}
