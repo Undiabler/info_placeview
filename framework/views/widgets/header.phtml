@@ -1,0 +1,59 @@
+ <div class="navbar__hr hidden-xs hidden-sm"></div>
+
+    <!-- STATIC NAVBAR
+    ============================== -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Toggle button -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Brand name -->
+          <a class="navbar-brand" href="index.html">
+            <img src="/img/logo_beta.png">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <!-- Navbar links -->
+          <ul class="nav navbar-nav navbar-right">
+
+          	<li>
+              <a href="#">
+                 +1-456-789-999
+              </a>
+            </li>
+
+            <li>
+              <a href="http://buy.placeview.in">
+                <i class="fa fa-briefcase"></i> Для бизнеса
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="fa fa-camera"></i> Заказать сьемку
+              </a>
+            </li>
+
+            <li>
+              <?=$this->extra->url([['for'=>'index_act','action'=>'docs'],'<i class="fa fa-book"></i> Документация'])?>
+            </li>
+            
+            <li>
+                <?=$this->extra->url([['for'=>'index_act','action'=>'docs'],'<i class="fa fa-info-circle"></i> О нас '])?>
+            </li>
+          </ul>
+          <!-- Search form (for collapsed menu only) -->
+          <form class="navbar-form navbar-left visible-xs visible-sm" role="search">
+            <div class="form-group">
+              <label class="sr-only" for="nav-search-xs">Search</label>
+              <input type="search" class="form-control" id="nav-search-xs" placeholder="Search here...">
+            </div>
+          </form>
+        </div> <!-- / .navbar-collapse -->
+      </div> <!-- / .container -->
+    </div> <!-- / .navbar -->

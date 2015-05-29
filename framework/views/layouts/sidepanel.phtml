@@ -1,0 +1,99 @@
+<?php 
+$name=$this->router->getActionName(); 
+
+$menu=[
+  'planing'=>'Планирование',
+  // 'focus'=>'Фокус',
+  // 'best_day'=>'Идеальный день',
+  // 'success_story'=>'Дневник успеха',
+  // 'visualyse'=>'Визуализация',
+];
+
+
+?>
+<aside>
+    <nav>
+        <ul>
+            <?php
+            foreach ($menu as $key => $cur) {
+                // var_dump($cur);
+                if ($name==$key) $act='active'; else $act='';
+                ?>
+                <li class='<?=$act?>'><?=$this->tag->linkTo([['for'=>$key, 'class'=>''],$cur])?></li>
+            <?php } ?>
+        </ul>
+    </nav>
+
+        <div class="widget widget-spheres">
+            <div class="widget-title">Сфера</div>
+            <?php $sp_filter=$this->request->getQuery('sphere_filter',null,0); ?>
+            <ul>
+                <li class="<?=$sp_filter==0?'active':''?> not-sort">
+                    <div class="sphere-color" data-tab="color">
+                        <span class="color" style="background-color: #BBBBBB;"></span>
+                    </div>
+                    <a href="#" class="sphere-name all-spheres" data-id="0">Все</a>
+                </li>
+
+              <?php foreach ($this->extra->getSpheres() as $sphere) { ?>                
+                <li class="<?=$sp_filter==$sphere['id']?'active':''?>" data-id="<?=$sphere['id']?>">
+                    <a href="#" class="sphere-color" data-dialog="sphere-edit" data-tab="color">
+                        <span class="color" style="background-color: #<?=$sphere['color']?>;" data-color="#<?=$sphere['color']?>"></span>
+                    </a>
+                    <a href="#" class="sphere-name"><?=$sphere['name']?></a>
+                    <div class="hover-menu resetGroup">
+                        <a href="#" class="people" data-dialog="sphere-edit" data-tab="users"></a>
+                        <a href="#" class="menu"></a>
+                    </div>
+                    <div class="details-menu resetGroup">
+                        <a href="#" class="remove" data-dialog="sphere-remove"></a>
+                        <a href="#" class="users" data-dialog="sphere-edit" data-tab="users"></a>
+                        <a href="#" class="edit"></a>
+                        <a href="#" class="sort"></a>
+                    </div>
+                    <div class="sphere-form">
+                        <form method="post">
+                            <a href="#" class="sphere-color" data-dialog="sphere-edit" data-tab="color">
+                                <span class="color"></span>
+                            </a>
+                            <div class="sphere-name-input"><input type="text" /></div>
+                            <div class="control edit">
+                                <input type="submit" class="ok" value=""/>
+                                <a href="#" class="cancel"></a>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+              <?php } ?>
+               
+            </ul>
+            <div class="add-new-item small gray add-spheres" title="Добавить сферу"></div>
+        </div>
+        <div class="widget widget-invite">
+            <?php $invites = $this->extra->getInvites();
+            if ($ci=count($invites)): ?>
+            <div class="widget-title">Приглашения (<span class="invite-count"><?=$ci?></span>):</div>
+            <ul>
+            <?php foreach ($invites as $key => $value): ?>
+                <li>
+                    <div class="invite-wrap">
+                        <div class="sphere-color">
+                            <span class="color" style="background-color: #<?=$value['color']?>;"></span>
+                        </div>
+                        <div class="sphere-name"><?=$value['name']?></div>
+                        <div class="control default">
+                            <a href="#" class="ok"></a>
+                            <a href="#" class="cancel"></a>
+                        </div>
+                    </div>
+                    <div class="from">от <?=$value['firstName']." ".$value['lastName']?></div>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+            <?php endif;?>
+        </div>
+        <div class="widget widget-notification" style="display: none;">
+            <div class="widget-title">Уведомления <span>(<span class="notification-count">0</span>):</span></div>
+            <div class="array-notification"></div>
+        </div>
+    </aside>

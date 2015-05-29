@@ -1,0 +1,160 @@
+<?php 
+
+function treeput($rows,$count,$cols,$gr_flag,$level=0){
+
+	$table_rows=[
+		'ntime'     => 'Дата',
+		'lp_name'  => 'Ленд (имя)',
+		'of_name' => 'Офер (имя)',
+		'land'  => 'Ленд (id)',
+		'offer' => 'Офер (id)',
+		'c1'    => 'c1',
+		'c2'    => 'c2',
+		'c3'    => 'c3',
+		'c4'    => 'c4',
+		'c5'    => 'c5',
+		'c6'    => 'c6',
+		'c7'    => 'c7',
+		'c8'    => 'c8',
+		'c9'    => 'c9',
+		'c10'    => 'c10',
+	];
+
+
+	$col_names=[
+		'clicks'=>'Клики',
+		'views'=>'Показы',
+		'ps_lead'=>'Качество трафика',
+		'leads'=>'Конверсии',
+		'rev'=>'Заработано',
+		'cost'=>'Потрачено',
+		'profit'=>'Прибыль',
+		'roi'=>'ROI (обычный)',
+		'ps_roi'=>'ROI (фактический)',
+	];
+
+
+	$allcols = $table_rows+$col_names;
+
+	$diff = $count-(count($cols))-1;
+
+    $lvl_str=str_repeat('<td class="white_bg"></td>',($level-$diff > 0)?$level-$diff:0 );
+
+	$lvl_padding = 5+($level*30);
+
+    if (array_key_exists('sub_data', $rows[array_keys($rows)[0]])) {
+
+            foreach ($rows as $key => $value) {
+
+                $tdd_g='';
+
+	            $toplvl = '';
+	            $grouped = '';
+	            $lgreen = '';
+
+	            if ($level===0){
+		            $toplvl = 'toplvl';
+		            $key = '<b>'.$key.'</b>';
+	            }
+	            if (array_key_exists('sub_data', $value['sub_data'][array_keys($value['sub_data'])[0]])){
+		            $grouped = 'grouped';
+		            $lgreen = 'lgreen';
+	            }
+
+                foreach ($value['group_data'] as $sw => $td) {
+                    $cl=Tools::parse_col($td,$sw);
+
+	                $class = (in_array($sw,array_keys($col_names))) ? 'canhide' : '';
+
+	                $tdd_g.=($level===0) ? "<td class='$sw $cl $class'>$td</td>":"<td class='$sw $lgreen $cl $class'>$td</td>";
+
+                }
+
+				$diff = count($cols)-count($value['group_data']);
+				if ($diff > 0) $gr_flag = 1;
+                $tds_str=str_repeat('<td></td>',$diff);
+
+                echo("<tr class=\"".$grouped." ".$toplvl."\"><td  style=\"padding-left: {$lvl_padding}px;\"> $key</td>$tds_str $tdd_g</tr>");
+                treeput($value['sub_data'],$count,$cols,$gr_flag,$level+1);
+            }
+
+    } else {
+
+	    if ($gr_flag){
+		    foreach ($rows as $one) {
+
+			    # code...
+			    echo '<tr>'.$lvl_str;
+
+			    foreach ($one as $sw=>$td) {
+				    $cl=Tools::parse_col($td,$sw);
+				    $class = (in_array($sw,array_keys($col_names))) ? 'canhide' : '';
+				    echo "<td class='$sw $cl $class'>$td</td>";
+			    }
+			    //echo $tds_str;
+			    echo '</tr>';
+		    }
+	    }
+
+
+    }
+
+
+}
+
+$table_rows=[
+	'ntime'     => 'Дата',
+	'lp_name'  => 'Ленд (имя)',
+	'of_name' => 'Офер (имя)',
+	'land'  => 'Ленд (id)',
+	'offer' => 'Офер (id)',
+	'c1'    => 'c1',
+	'c2'    => 'c2',
+	'c3'    => 'c3',
+	'c4'    => 'c4',
+	'c5'    => 'c5',
+	'c6'    => 'c6',
+	'c7'    => 'c7',
+	'c8'    => 'c8',
+	'c9'    => 'c9',
+	'c10'    => 'c10',
+];
+
+
+$col_names=[
+	'clicks'=>'Клики',
+	'views'=>'Показы',
+	'ps_lead'=>'Качество трафика',
+	'leads'=>'Конверсии',
+	'rev'=>'Заработано',
+	'cost'=>'Потрачено',
+	'profit'=>'Прибыль',
+	'roi'=>'ROI (обычный)',
+	'ps_roi'=>'ROI (фактический)',
+];
+
+
+$allcols = $table_rows+$col_names;
+
+
+if ($grouped) {
+        treeput($rows,$count,$cols,0);
+
+    } else { 
+
+        foreach ($rows as $key=>$one1) {
+
+    ?>
+
+            <tr>
+            <?php foreach ($one1 as $sw => $td) {
+	            $cl=Tools::parse_col($td,$sw);
+	            $class = (in_array($sw,array_keys($col_names))) ? 'canhide' : '';
+	            ?>
+                <td class="<?=$sw?> <?=$cl?> <?=$class?>"><?php echo $td; ?></td>
+            <?php } ?>
+            </tr>
+
+    <?php } 
+
+    } ?>

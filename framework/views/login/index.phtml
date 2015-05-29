@@ -1,0 +1,83 @@
+<header>
+    <div class="header">
+        <div class="logo">AIMGOD</div>
+    </div>
+</header>
+<section class="content">
+    <div class="login-page">
+        <h1><b>AIM</b>GOD</h1>
+        <h2>Платформа развития личности</h2>
+        <h3>Используйте Законы Вселенной <br/>для достижения выдающихся результатов</h3>
+        <a class="login-btn" href="#" data-dialog="login">Вход</a>
+        <div class="reg-form reg-home">
+            <form method="post">
+                <div class="form-title">Регистрация</div>
+                <?php echo $this->flash->output() ?>
+                <?=$this->tag->textField(['firstlastname','placeholder'=>'Имя и фамилия']);?>
+                <?=$this->tag->textField(['user_email','placeholder'=>'Email']);?>
+                <?=$this->tag->passwordField(['user_password','placeholder'=>'Пароль']);?>
+                <input name="user_reg" type="submit" class="btn big blue full" value="Вперед">
+            </form>
+            <div class="soc-login">
+                <a href="/auth/google" class="gp">Регестрация с Google аккаунтом</a>
+            </div>
+        </div>
+    </div>
+</section>
+<?php $this->partial("widgets/footer") ?>
+<!--<div class="page" id="page">-->
+<!---->
+<!--        <header class="site-header">-->
+<!--            <div class="container">-->
+<!--                <a href="#" class="main-logo">-->
+<!--                    <img src="static/img/main-logo.png" alt="AIMGOD" title="AIMGOD"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </header>-->
+<!---->
+<!--        <div id="main-content" class="container">-->
+<!--            <div class="logo-wrap">-->
+<!--                <div class="logo-text"><span>Aim</span>God</div>-->
+<!--                <div class="logo-desc">Платформа развития личности</div>-->
+<!--            </div>-->
+<!--            <div class="slogan">Используйте Законы Вселенной<br> для достижения выдающихся результатов</div>-->
+<!---->
+<!--            <div class="ta-center"><a href="#" class="btn-login" id="js-open-login-dialog">Вход</a></div>-->
+<!---->
+<!--            <div class="reg-form">-->
+
+<!--                <form method="post">-->
+<!--                    <div class="block-title ta-center">Регистрация</div>-->
+<!--                    <!-- <input class="input-text" name="user_email" type="email" placeholder="Email"> -->
+<!--                    <!-- <input class="input-text" name="user_password" type="password" placeholder="Пароль"> -->
+<!--                    <input class="input-btn" name="user_reg" type="submit" value="Вперед">-->
+<!---->
+<!--                    <div class="social-reg-block">-->
+<!--                        <div class="ta-center">-->
+<!--                            <a href="/auth/google" class="social-reg-xl google-xl">Регестрация с Google аккаунтом</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!--                </form>-->
+<!--            </div>-->
+<!---->
+<!--        </div> <!-- /container -->
+<!---->
+<!--        <div class="clearer"></div>-->
+<!--        <div class="push"></div>-->
+<!--    </div>-->
+<!---->
+<!--    <!-- Login Dialog -->
+<!--    <div id="js-login-dialog" class="js-login-dialog js-dialog small" title="Вход в систему">-->
+<!--        <div class="dialog-container reg-form login-form">-->
+<!--            <form method="post">-->
+<!--                <input class="input-text" name="login_email" type="email" placeholder="Email">-->
+<!--                <input class="input-text" name="login_password" type="password" placeholder="Пароль">-->
+<!--                <input class="btn-flat btn-green bold" name="user_enter" type="submit" value="Войти">-->
+<!---->
+<!--                <div class="social-reg-block ta-center">-->
+<!--                    <a href="/auth/google" class="social-reg-xl google-xl">Вход с Google-аккаунтом</a>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->

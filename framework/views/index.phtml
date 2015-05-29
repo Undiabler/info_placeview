@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="<?=$this->config->lang?>"> 
+    <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+        <meta charset="UTF-8">
+
+        <meta name="keywords" content="" />
+        <meta name="description" content="PlaceView.in – это web-платформа для создания (конструирования и администрирования), размещения и продвижения интерактивных виртуальных туров в сети Интернет. Платформа виртуальной реальности PlaceView.in способствует развитию рынка недвижимости, индустрии гостеприимства HoReCa, туризма и культуры, а так же многих других сфер бизнеса, для которых полезен визуальный образ места, как например автосалоны, магазины аксессуаров, развлекательные комплексы и пр." />
+        <meta name="language" content="ru" />
+        <meta name="autor" content="placeview.in" />
+        <meta name="title" content="Конструктор интерактивных витруальныx туров." />
+        <meta name="og:title" content="Конструктор интерактивных витруальныx туров." />
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content="http://placeview.in/" />
+        <meta name="og:image" content="http://placeview.in/img/site/LOGO_BETA.png" />
+
+        <?php $this->partial("widgets/meta/alternate"); ?>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <!-- <link href='/assets/css/map.css' rel='stylesheet' /> -->
+         <?php $this->assets->outputCss() ?>
+
+		<!-- CSS Global -->
+		<link href="http://dev.placeview.in/css/styles.css" rel="stylesheet">
+
+	    <link href="/css/animate.css" rel="stylesheet">
+
+	    <!-- Google Fonts -->
+	    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	    
+	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	    <link href="/css/placeview.css" rel="stylesheet">
+
+        <title>PlaceView — Конструктор интерактивных витруальныx туров.</title> 
+
+    </head> 
+    <body>      
+
+    <!-- PRELOADER
+    ============================== -->
+    <div class="preloader">
+      <img src="/img/preloader.gif" alt="Loading..." class="preloader__img">
+    </div>
+
+	<?php $this->partial("widgets/header"); ?>
+   
+	<?php echo $this->getContent() ?>
+
+	<?php $this->partial("widgets/footer"); ?>
+    
+	<?php $this->assets->outputJs() ?>
+
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+
+	<!-- JS Plugins -->
+    <script src="/js/smoothscroll.js"></script>
+    <script src="/js/scrolltopcontrol.js"></script>
+    <script src="/js/wow.min.js"></script>
+
+    <!-- JS Custom -->
+    <script src="/js/custom.js"></script>
+    <script src="/js/custom_ui-nav.js"></script>
+    <script src="/js/custom_info.js"></script>
+
+    </body>
+</html>

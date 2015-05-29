@@ -1,0 +1,47 @@
+
+<div class="container">
+<h3>Зарегистрированные пользователи</h3>
+	
+<div class="panel panel-default">
+  <div class="panel-body">  
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Имя</th>
+			<th>Фамилия</th>
+			<th>email</th>
+			<th>зарегестрирован</th>
+			<th>последняя активность</th>
+			<th>пакет</th>
+			<th>действия</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<?php foreach ($users as $user) {?>
+		<tr style="<?=$user['status']==3?'color:#C7C7C7;':''?>">
+			<td><?=$user['id']?></td>
+			<td><?=$user['firstName']?></td>
+			<td><?=$user['lastName']?></td>
+			<td><?=$user['email']?></td>
+			<td><?=$user['registrationDate']?></td>
+			<td><?=$user['lastLogin']?></td>
+			<td><?=$user['vip']?></td>
+			<td><a href="/adminpanel/useract?act=0&id=<?=$user['id']?>">Удалить</a> | 
+			<?php if ( $user['status']==3 ) { ?>
+				<a href="/adminpanel/useract?act=2&id=<?=$user['id']?>">Разбанить</a>
+			<?php } else { ?>
+				<a href="/adminpanel/useract?act=1&id=<?=$user['id']?>">Забанить</a>
+			<?php } ?>
+			</td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+  
+  </div>
+</div>
+
+</div>
