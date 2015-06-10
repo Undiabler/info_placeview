@@ -127,7 +127,7 @@ class Security extends Plugin
 	public function lang($dispatcher){
 		$lang = $dispatcher->getParam("language");		
 		if (!$lang) {
-			if (preg_match('/^\/[a-z]{2}/',$_SERVER['REQUEST_URI'])) return;
+			if (preg_match('/^\/[a-z]{2}\//',$_SERVER['REQUEST_URI'])) return;
 			$new_lang=substr($this->request->getBestLanguage(),0,2);
 			if (file_exists(__DIR__."/../messages/".$new_lang.".php")){
 				$this->config->lang=$new_lang;
