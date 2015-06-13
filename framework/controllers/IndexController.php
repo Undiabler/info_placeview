@@ -7,7 +7,14 @@ class IndexController extends CController
 {
 
 	public function initialize() {
-		var_dump('index initialized');
+		//$this->tag->prependTitle('PlaceView — Конструктор интерактивных витруальныx туров.');
+		$this->tag->setTitle(' | Placeview');
+
+		//
+
+
+
+		//var_dump('index initialized');
 	}
 
 	public function adminpanelAction() {
@@ -39,7 +46,12 @@ class IndexController extends CController
 	}
 
 	public function alldocsAction() {
+		$this->tag->prependTitle($this->trans->_('All Categories'));
 
+		$cats = $this->extra->getSql("SELECT c.id, c.slug, ct.name, ct.description FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at",
+			[$this->config->lang]);
+
+		$this->view->setVar("cats", $cats);
 	}
 
 	public function docsAction() {

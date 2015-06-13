@@ -17,66 +17,16 @@
     <div class="container section section_alt">
       <div class="row">
         <div class="col-md-8 col-md-offset-2" id="tree">
+          <?php foreach($cats as $cat): ?>
           <div class="col-md-6">
             <h2>
-              <a href="/category" class="features__title">
-                fsaas dsd
-              </a>
+              <a href="/<?php echo $this->config->lang ?>/category/<?php echo $cat['slug'] ?>" class="features__title"><?php echo $cat['name'] ?></a>
             </h2>
             <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
+              <?php echo $cat['description'] ?>
             </span>
           </div>
-          <div class="col-md-6">
-            <h2>
-              <a href="#" class="features__title">
-                fsaas dsd
-              </a>
-            </h2>
-            <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
-            </span>
-          </div>
-          <div class="col-md-6">
-            <h2>
-              <a href="#" class="features__title">
-                fsaas dsd
-              </a>
-            </h2>
-            <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
-            </span>
-          </div>
-          <div class="col-md-6">
-            <h2>
-              <a href="#" class="features__title">
-                fsaas dsd
-              </a>
-            </h2>
-            <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
-            </span>
-          </div>
-          <div class="col-md-6">
-            <h2>
-              <a href="#" class="features__title">
-                fsaas dsd
-              </a>
-            </h2>
-            <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
-            </span>
-          </div>
-          <div class="col-md-6">
-            <h2>
-              <a href="#" class="features__title">
-                fsaas dsd
-              </a>
-            </h2>
-            <span class="features__intro">
-              asdasda sddf sdf sdf sdf sdfsdfsdf
-            </span>
-          </div>
+          <?php endforeach ?>
           <div class="clearfix"></div>
         </div>
       </div>
