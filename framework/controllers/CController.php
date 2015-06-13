@@ -6,8 +6,11 @@ use Phalcon\Mvc\View;
 class CController extends Controller
 {
 
+	protected $trans;
+
 	public function onConstruct() {
-		$this->view->setVar("t", $this->_getTranslation());
+		$this->trans = $this->_getTranslation();
+		$this->view->setVar("t", $this->trans);
 	}
 
 	protected function _getTranslation()
