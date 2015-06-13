@@ -24,6 +24,11 @@ $router = new \Phalcon\Mvc\Router(false);
 	)->setName('index_act');
 
 	$router->add(
+		'/{language:[a-z]{2}}/category/{slug:[a-z0-9\-]+}',
+		[	"controller" => "index", "action" => "category", ]
+	)->setName('category');
+
+	$router->add(
 	    '/{language:[a-z]{2}}/docs/{article:[a-z0-9\-]+}',
 	    [	"controller" => "index", "action" => 'docs', ]
 	)->setName('docs');

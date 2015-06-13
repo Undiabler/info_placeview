@@ -20,7 +20,15 @@
           <?php foreach($cats as $cat): ?>
           <div class="col-md-6">
             <h2>
-              <a href="/<?php echo $this->config->lang ?>/category/<?php echo $cat['slug'] ?>" class="features__title"><?php echo $cat['name'] ?></a>
+              <?php echo $this->tag->linkTo([
+                  [
+                      'for' => 'category',
+                      'language' =>  $this->config->lang,
+                      'slug' => $cat['slug']
+                  ],
+                  $cat['name'],
+                  'class' => 'features__title'
+              ]) ?>
             </h2>
             <span class="features__intro">
               <?php echo $cat['description'] ?>
