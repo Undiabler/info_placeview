@@ -9,12 +9,11 @@ class IndexController extends CController
 	public function initialize() {
 		//$this->tag->prependTitle('PlaceView — Конструктор интерактивных витруальныx туров.');
 		$this->tag->setTitle(' | Placeview');
+	}
 
-		//
-
-
-
-		//var_dump('index initialized');
+	public function indexAction() {
+		//die('index');
+		//exit();
 	}
 
 	public function adminpanelAction() {
@@ -27,10 +26,6 @@ class IndexController extends CController
 	public function planingAction() {
 	  // $this->view->setVar('days',$this->getTasks());
 		$this->view->setVar('days',[]);
-	}
-
-	public function indexAction() {
-		exit();
 	}
 
 	public function emptyAction() {

@@ -2,7 +2,7 @@
 $config = [
     'app' => [
         'name'          => 'Placeview',
-        'product'       => 'dev.placeview.in',
+        'product'       => 'info.placeview.in',
         'cryptSalt'     => '$9diko$.f#11',
 
     ],
@@ -80,8 +80,8 @@ $config = [
         'password' => 'rah@Te123H',
         'wsdl' => 'http://services.hamrahvas.com/SMSBuffer.asmx?wsdl'
     ],
-    'lang' => 'en',
-    'langs' => ['en','ru','fr']
+    'lang' => 'ru',
+    'langs' => ['ru', 'en']
 ];
 
 return new \Phalcon\Config($config);

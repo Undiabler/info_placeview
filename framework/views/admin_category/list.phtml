@@ -1,0 +1,64 @@
+<div class="page-header">
+	<h3>Список категорий</h3>
+</div>
+
+<ol class="breadcrumb">
+	<li><a href="/admin">Главная</a></li>
+	<li class="active">Категории</li>
+</ol>
+
+<table class="table table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Название</th>
+			<th>Slug</th>
+			<th>Создано</th>
+			<th>Действия</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<?php foreach ($cats as $cat) { ?>
+		<tr>
+			<td><?php echo $cat['id'] ?></td>
+			<td><?php echo $cat['name'] ?></td>
+			<td><?php echo $cat['slug'] ?></td>
+			<td><?php echo $cat['created_at'] ?></td>
+			<td>
+				<a class="btn btn-default btn-xs" href="/admin/category/edit/<?php echo $cat['id'] ?>">Изменить</a>
+				<a class="btn btn-default btn-xs btn-danger" href="/admin/category/delete/<?php echo $cat['id'] ?>">Удалить</a>
+			</td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+<nav>
+	<ul class="pagination">
+		<?php if ($currentPage > 1): ?>
+		<li>
+			<a href="/admin/category/list/<?php echo $currentPage - 1 ?>" aria-label="Назад">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<?php endif ?>
+		<?php foreach($pages as $pageNumber): ?>
+			<li<?php if ($currentPage == $pageNumber): ?> class="active"<?php endif ?>>
+				<?php if ($currentPage == $pageNumber): ?>
+					<span><?php echo $pageNumber; ?></span>
+				<?php else: ?>
+					<a href="/admin/category/list/<?php echo $pageNumber ?>"><?php echo $pageNumber ?></a>
+				<?php endif ?>
+
+			</li>
+		<?php endforeach ?>
+		<?php if ($currentPage < $maxPages): ?>
+		<li>
+			<a href="/admin/category/list/<?php echo $currentPage + 1 ?>" aria-label="Вперед">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+		<?php endif ?>
+	</ul>
+</nav>
+<a class="btn btn-primary" href="/admin/category/create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Создать</a>

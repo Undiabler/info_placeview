@@ -37,22 +37,20 @@ class Loader {
 
 		    $di['db'] = function() use ($di,$config) {
 
-		    	// var_dump($bd_config);
 		    	$db=new DbAdapter($config->databases->db->toArray());
 				
-				// $eventsManager = $di->getShared('eventsManager');
+				$eventsManager = $di->getShared('eventsManager');
 
-				// $logger = new FileLogger("app/logs/db.log");
+				$logger = new FileLogger(realpath(dirname(__FILE__) . '/logs/db.log'));
 
-				// // Слушаем все события БД
-				// $eventsManager->attach('db', function($event, $connection) use ($logger) {
-				//     if ($event->getType() == 'beforeQuery') {
-				//         // $logger->log($connection->getSQLStatement(), Logger::INFO);
-				//         // var_dump($connection->getSQLStatement());
-				//     }
-				// });
+				// Слушаем все события БД
+				$eventsManager->attach('db', function($event, $connection) use ($logger) {
+				    if ($event->getType() == 'beforeQuery') {
+				        $logger->log($connection->getSQLStatement(), Logger::INFO);
+				    }
+				});
 
-				// $db->setEventsManager($eventsManager);
+				$db->setEventsManager($eventsManager);
 		        
 		        return $db;
 		    };
@@ -163,15 +161,15 @@ class Loader {
 		    };
 
 		    $di->set('flash', function () {
-			$flash = new \Phalcon\Flash\Session(array(
-			    'error'   => 'alert alert-danger',
-			    'success' => 'alert alert-success',
-			    'notice'  => 'alert alert-info',
-			    'warning' => 'alert alert-warning'
-			));
+				$flash = new \Phalcon\Flash\Session(array(
+					'error'   => 'alert alert-danger',
+					'success' => 'alert alert-success',
+					'notice'  => 'alert alert-info',
+					'warning' => 'alert alert-warning'
+				));
 
-			return $flash;
-		});
+				return $flash;
+			});
 
 			$di->set('router', function() {
 				return include __DIR__ . '/config/routing.php';

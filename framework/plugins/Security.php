@@ -40,7 +40,6 @@ class Security extends Plugin
 	 */
 	public function getAcl()
 	{
-
 		//throw new \Exception("something");
 
 		if (!isset($this->persistent->acl)) {
@@ -66,6 +65,7 @@ class Security extends Plugin
 				'index'      => array('*'),
 				'error'     => array('*'),
 				'auth'     => array('*'),
+				'admin'    => ['login']
 			);
 
 
@@ -77,9 +77,14 @@ class Security extends Plugin
 			// TODO:пройтись и прописать отдельно права для каждого модуля/контроллера
 
 			//закрытые админские
-			$adminResources = array(
-				'adminpanel'      => array('*'),
-			);
+			$adminResources = [
+				'admin' => [
+					'index'
+				]
+			];
+			/*$adminResources = array(
+				'admin'      => array('*'),
+			);*/
 
 			foreach ($publicResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
@@ -97,10 +102,12 @@ class Security extends Plugin
 			foreach ($roles as $role) {
 				foreach ($publicResources as $resource => $actions) {
 					foreach ($actions as $action){
+						//echo 'Role "' . $role->getName() . '"' . ' allow to "' . $resource . '/' . $action . '";<br />';
 						$acl->allow($role->getName(), $resource, $action);
 					}
 				}
 			}
+			//die();
 
 			//Grant acess to private area to role Users
 			foreach ($privateResources as $resource => $actions) {
@@ -117,7 +124,20 @@ class Security extends Plugin
 			}
 
 			$this->persistent->acl = $acl;
+
+			/*echo '<pre>';
+			echo 'new ACL created: <br />';
+			var_dump($this->persistent->acl);
+			echo '</pre>';
+			die();*/
+
 		
+		} else {
+			/*echo '<pre>';
+			echo 'ACL already exists: <br />';
+			var_dump($this->persistent->acl);
+			echo '</pre>';
+			die();*/
 		}
 
 		return $this->persistent->acl;
@@ -150,7 +170,7 @@ class Security extends Plugin
 	public function beforeDispatch(Event $event, Dispatcher $dispatcher)
 	{
 
-		$this->lang($dispatcher);
+		//$this->lang($dispatcher);
 
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
@@ -163,11 +183,19 @@ class Security extends Plugin
 		// var_dump($controller);
 		// var_dump($action);
 
-		if ($role=='Admins') return true;
+		//if ($role=='Admins') return true;
 	
-		$acl = $this->getAcl();
+		//$acl = $this->getAcl();
 
-		if ( $acl->isAllowed($role, $controller, $action) != Acl::ALLOW) {
+		// Testing ACL
+		/*echo 'Role: ' . $role . '<br />';
+		echo 'Controller: ' . $controller . '<br />';
+		echo 'Action: ' . $action . '<br />';
+		echo 'Is allowed?: ' . (string)(bool)($acl->isAllowed($role, $controller, $action) != Acl::ALLOW);
+		die();*/
+
+
+		/*if ($acl->isAllowed($role, $controller, $action) != Acl::ALLOW) {
 
 			$dispatcher->forward(array(
 				'controller' => 'error',
@@ -175,6 +203,6 @@ class Security extends Plugin
 			));
 
 			return false;
-		}
+		}*/
 	}
 }

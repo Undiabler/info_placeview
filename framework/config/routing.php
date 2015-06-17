@@ -2,10 +2,37 @@
 
 $router = new \Phalcon\Mvc\Router(false);
 
-    $router->setDefaultController('index');
-    $router->setDefaultAction('index');
+$router->add("/{language:[a-z]{2}}/", [
+	"controller" => "index",
+	"action" => "index",
+	"language" => "en"
+])->setName('home');
 
-    $router->add(
+$router->add("/admin", [
+	"controller" => "admin",
+	"action" => "index"
+])->setName('admin');
+
+$router->add("/admin/login", [
+	"controller" => "admin",
+	"action" => "login"
+])->setName('admin_login');
+
+$router->add("/admin/logout", [
+	"controller" => "admin",
+	"action" => "logout"
+])->setName('admin_logout');
+
+$router->add("/admin/category/:action/:params", [
+	"controller" => "admin_category",
+	"action" => 1,
+	"params" => 2
+]);
+
+    //$router->setDefaultController('index');
+    //$router->setDefaultAction('index');
+
+    /*$router->add(
 	    '/{language:[a-z]{2}}/:controller/:action',
 	    array(
 	        'controller' => 2,
@@ -106,11 +133,11 @@ $router = new \Phalcon\Mvc\Router(false);
 	//     "/campaign/edit/{id:[0-9]+}",
 	//     [	"controller" => "camps", "action" => "edit", ]
 	// )->setName('camp-edit');
-
+    */
 
 	$router->notFound(array(
-	    "controller" => "errors",
-	    "action" => "route404"
+	    "controller" => "error",
+	    "action" => "error404"
 	));
 
 

@@ -65,5 +65,9 @@ class User extends Component
 		return $this->role=='Admins';
 	}
 
+	public function signOut() {
+		$this->setAttr(0, 'Guests', null);
+	}
+
 
 }

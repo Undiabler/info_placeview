@@ -1,0 +1,20 @@
+<?php
+$menu = [
+	'/admin' => 'Главная',
+	'/admin/category/list' => 'Категории',
+	'/admin/document/list' => 'Документы'
+];
+?>
+<div class="container">
+	<ul class="nav nav-pills">
+		<?php foreach ($menu as $menuItemLink => $menuItemName): ?>
+		<li<?php if ($menuItemLink == $this->router->getRewriteUri()):?> class="active"<?php endif ?>><a href="<?php echo $menuItemLink ?>"><?php echo $menuItemName ?></a></li>
+		<?php endforeach ?>
+	</ul>
+
+	<?php $this->flash->output() ?>
+
+	<?php echo $this->getContent() ?>
+
+	<a href="/admin/logout">Выйти</a>
+</div>
