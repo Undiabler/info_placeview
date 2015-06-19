@@ -13,7 +13,7 @@ class AdminCategoryController extends CController
             ));
         }
 
-        $this->tag->setTitle(' | Admin Panel');
+        $this->tag->setTitle(' | Админ Панель');
         $this->view->setTemplateAfter('admin');
     }
 
@@ -47,7 +47,7 @@ class AdminCategoryController extends CController
         if ($this->request->isPost()) {
             $cat = $this->request->getPost('cat');
 
-            $noErrors = true;
+            $errors = false;
 
             $success = $this->db->query("INSERT INTO category (slug) VALUES (:slug)", [
                 'slug' => $cat['slug']
@@ -69,21 +69,23 @@ class AdminCategoryController extends CController
                     if ($success) {
                         $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
                     } else {
-                        $this->flash->error('Insert into category_translate was failed! Category ID #' . $cat['id']);
-                        $noErrors = false;
+                        //$this->flash->error('Insert into category_translate was failed! Category ID #' . $cat['id']);
+                        $errors = true;
                     }
                 }
 
 
             } else {
-                $this->flash->error('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was not created!');
-                $noErrors = false;
+                //$this->flash->error('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was not created!');
+                $errors = true;
             }
 
-            if ($noErrors) {
-                $this->flash->success('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was created successful!');
+            if (!$errors) {
+                $this->flash->success('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" создана!');
 
                 return $this->response->redirect('/' . $this->config->lang . "/admin/category/edit/" . $cat['id']);
+            } else {
+                $this->flash->error('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" не была создана!');
             }
         }
 
@@ -95,7 +97,7 @@ class AdminCategoryController extends CController
         if ($this->request->isPost()) {
             $cat = $this->request->getPost('cat');
 
-            $noErrors = true;
+            $errors = false;
 
             $this->db->query("UPDATE category SET slug = :slug WHERE id = :category_id", [
                 'slug' => $cat['slug'],
@@ -134,14 +136,16 @@ class AdminCategoryController extends CController
                     if ($success) {
                         $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
                     } else {
-                        $this->flash->error('Insert into category_translate was failed! Category ID #' . $categoryId);
-                        $noErrors = false;
+                        //$this->flash->error('Insert into category_translate was failed! Category ID #' . $categoryId);
+                        $errors = true;
                     }
                 }
             }
 
-            if ($noErrors) {
-                $this->flash->success('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was updated successful!');
+            if (!$errors) {
+                $this->flash->success('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" обновлена!');
+            } else {
+                $this->flash->error('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" не была обновлена!');
             }
         } else {
             $q = $this->db->query("SELECT * FROM category WHERE id = ?", [$categoryId]);
@@ -180,16 +184,18 @@ class AdminCategoryController extends CController
             ]);
 
             if (!$success) {
-                $this->flash->error('Категория ID #' . $categoryId . ' не была удалена!');
+                //$this->flash->error('Категория ID #' . $categoryId . ' не была удалена!');
                 $errors = true;
             }
         } else {
-            $this->flash->error('Категория ID #' . $categoryId . ' не была удалена, данной категории не существует!');
+            //$this->flash->error('Категория ID #' . $categoryId . ' не была удалена, данной категории не существует!');
             $errors = true;
         }
 
         if (!$errors) {
             $this->flash->success('Категория #' . $categoryId . ' удалена!');
+        } else {
+            $this->flash->error('Категория #' . $categoryId . ' не была удалена!');
         }
 
         return $this->response->redirect('/' . $this->config->lang . "/admin/category/list");

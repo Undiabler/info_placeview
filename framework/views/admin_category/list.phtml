@@ -27,7 +27,7 @@
 			<td><?php echo $cat['created_at'] ?></td>
 			<td>
 				<a class="btn btn-default btn-xs" href="/<?php echo $this->config->lang ?>/admin/category/edit/<?php echo $cat['id'] ?>">Изменить</a>
-				<a class="btn btn-default btn-xs btn-danger" href="/<?php echo $this->config->lang ?>/admin/category/delete/<?php echo $cat['id'] ?>">Удалить</a>
+				<a class="btn btn-default btn-xs btn-danger" href="/<?php echo $this->config->lang ?>/admin/category/delete/<?php echo $cat['id'] ?>" onclick="return confirm('Вы уверены что хотите удалить категорию #<?php echo $cat['id'] ?>?');">Удалить</a>
 			</td>
 		</tr>
 		<?php } ?>

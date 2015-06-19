@@ -7,11 +7,8 @@ class AdminController extends CController
 {
 
     public function initialize() {
-        $this->tag->setTitle(' | Admin Panel');
+        $this->tag->setTitle(' | Админ Панель');
         //$this->session->get("auth")
-        //$this->user->getRole();
-
-
     }
 
     public function indexAction() {
@@ -22,7 +19,7 @@ class AdminController extends CController
             ));
         }
 
-        $this->tag->prependTitle($this->trans->_('Dashboard'));
+        $this->tag->prependTitle($this->trans->_('Главная'));
     }
 
     public function loginAction() {
@@ -33,7 +30,7 @@ class AdminController extends CController
             ));
         }
 
-        $this->tag->prependTitle($this->trans->_('Login'));
+        $this->tag->prependTitle($this->trans->_('Авторизация'));
 
         if ($this->request->isPost()) {
             //Проверка переменных отрпвленых через POST
@@ -42,7 +39,7 @@ class AdminController extends CController
             $password = sha1($password);
 
             if ($username == 'admin' && $password == sha1('admin')) {
-                //$this->flash->success('Welcome ' . $username);
+                $this->flash->success('Добро пожаловать, ' . $username . '!');
                 $this->user->setAttr(1, 'Admins', new User());
 
                 return $this->response->redirect(array(
@@ -50,8 +47,7 @@ class AdminController extends CController
                     "language" => $this->config->lang
                 ));
             } else {
-                $this->view->setVar('message','Wrong username/password');
-                //$this->flash->error('Wrong username/password');
+                $this->flash->error('Неправильное <b>Имя пользователя</b> или <b>Пароль</b>');
             }
         }
     }

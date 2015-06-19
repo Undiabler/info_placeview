@@ -1,18 +1,25 @@
-<h3>Логин</h3>
+<div class="page-header">
+    <h3>Авторизация</h3>
+</div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <?php echo $this->tag->form('/' . $this->config->lang . '/admin/login') ?>
-            <label for="email">Username</label>
-            <?php echo $this->tag->textField(array("username", "size" => "30")) ?>
-            <br />
-            <label for="password">Password</label>
-            <?php echo $this->tag->passwordField(array("password", "size" => "30")) ?>
-            <br />
-            <?php echo $this->tag->submitButton(array('Войти')) ?>
-            <p>
-                <div id="message"><?php echo $message ?></div>
-            </p>
-        </form>
-    </div>
+<div>
+    <form action="/<?php echo $this->config->lang ?>/admin/login" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Имя" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Пароль</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Пароль" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Вход</button>
+            </div>
+        </div>
+    </form>
 </div>

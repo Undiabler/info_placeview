@@ -6,15 +6,16 @@ $menu = [
 ];
 ?>
 <div class="container">
+	<?php $this->flash->output() ?>
+
+	<?php if ($this->user->isAdmin()): ?>
 	<ul class="nav nav-pills">
 		<?php foreach ($menu as $menuItemLink => $menuItemName): ?>
 		<li<?php if ($menuItemLink == $this->router->getRewriteUri()):?> class="active"<?php endif ?>><a href="<?php echo $menuItemLink ?>"><?php echo $menuItemName ?></a></li>
 		<?php endforeach ?>
+		<li class="navbar-right"><a href="/<?php echo $this->config->lang ?>/admin/logout">Выйти</a></li>
 	</ul>
-
-	<?php $this->flash->output() ?>
+	<?php endif ?>
 
 	<?php echo $this->getContent() ?>
-
-	<a href="/<?php echo $this->config->lang ?>/admin/logout">Выйти</a>
 </div>
