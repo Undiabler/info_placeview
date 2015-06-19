@@ -181,7 +181,8 @@ class Loader {
 		    echo $application->handle()->getContent();
 
 		} catch (Exception $e) {
-		     echo "Exception: ", $e->getMessage();
+		     echo '<b>Exception:</b> Error on line '.$e->getLine().' in '.$e->getFile()
+				 .': <b>'.$e->getMessage().'</b>';
 		}
 
 	}
