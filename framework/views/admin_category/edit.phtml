@@ -24,13 +24,13 @@
 </div>
 
 <ol class="breadcrumb">
-	<li><a href="/admin">Главная</a></li>
-	<li><a href="/admin/category/list">Категории</a></li>
+	<li><a href="/<?php echo $this->config->lang ?>/admin">Главная</a></li>
+	<li><a href="/<?php echo $this->config->lang ?>/admin/category/list">Категории</a></li>
 	<li class="active"><?php echo $cat['translation'][$this->config->lang]['name'] ?></li>
 </ol>
 
 <div>
-	<form action="/admin/category/edit/<?php echo $cat['id'] ?>" method="post" class="form-horizontal">
+	<form action="/<?php echo $this->config->lang ?>/admin/category/edit/<?php echo $cat['id'] ?>" method="post" class="form-horizontal">
 		<input type="hidden" name="cat[id]" value="<?php echo $cat['id'] ?>">
 		<div class="form-group">
 			<label for="slug" class="col-sm-2 control-label">Slug</label>
@@ -69,7 +69,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Сохранить</button>
-				<a class="btn btn-secondary" href="/admin/category/list">Отмена</a>
+				<a class="btn btn-secondary" href="/<?php echo $this->config->lang ?>/admin/category/list">Отмена</a>
 			</div>
 		</div>
 	</form>

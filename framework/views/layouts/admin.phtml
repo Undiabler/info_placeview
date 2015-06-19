@@ -1,8 +1,8 @@
 <?php
 $menu = [
-	'/admin' => 'Главная',
-	'/admin/category/list' => 'Категории',
-	'/admin/document/list' => 'Документы'
+	'/' . $this->config->lang . '/admin' => 'Главная',
+	'/' . $this->config->lang . '/admin/category/list' => 'Категории',
+	'/' . $this->config->lang . '/admin/document/list' => 'Документы'
 ];
 ?>
 <div class="container">
@@ -16,5 +16,5 @@ $menu = [
 
 	<?php echo $this->getContent() ?>
 
-	<a href="/admin/logout">Выйти</a>
+	<a href="/<?php echo $this->config->lang ?>/admin/logout">Выйти</a>
 </div>

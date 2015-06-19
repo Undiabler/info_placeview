@@ -161,7 +161,14 @@ class Extra extends Component
         return $rows;
     }
 
-    public function url($array){
+    public function url($array) {
+        if (!array_key_exists('language', $array)) {
+            $array['language'] = $this->config->lang;
+        }
+        return $this->url->get($array);
+    }
+
+    public function linkTo($array){
     	$i_a=$array[array_keys($array)[0]];
     	$lang = ['language'=>$this->config->lang];
     	if (is_array($i_a)) {

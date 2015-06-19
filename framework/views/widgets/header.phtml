@@ -13,9 +13,10 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Brand name -->
-          <a class="navbar-brand" href="<?php echo $this->url->get(array(
-              'for'   => 'home'
-          )) ?>">
+          <a class="navbar-brand" href="<?php echo $this->extra->url([
+              'for' => 'home',
+              //'language' => $this->config->lang
+          ]) ?>">
             <img src="/img/logo_beta.png">
           </a>
         </div>
@@ -42,11 +43,11 @@
             </li>
 
             <li>
-              <?=$this->extra->url([['for'=>'home'],'<i class="fa fa-book"></i> Документация'])?>
+              <?=$this->extra->linkTo([['for'=>'home'],'<i class="fa fa-book"></i> Документация'])?>
             </li>
             
             <li>
-                <?=$this->extra->url([['for'=>'home'],'<i class="fa fa-info-circle"></i> О нас '])?>
+                <?=$this->extra->linkTo([['for'=>'home'],'<i class="fa fa-info-circle"></i> О нас '])?>
             </li>
           </ul>
           <!-- Search form (for collapsed menu only) -->

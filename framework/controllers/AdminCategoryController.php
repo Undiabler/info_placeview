@@ -8,7 +8,8 @@ class AdminCategoryController extends CController
     public function initialize() {
         if (!$this->user->isAdmin()) {
             return $this->response->redirect(array(
-                "for" => "admin_login"
+                "for" => "admin_login",
+                "language" => $this->config->lang
             ));
         }
 
@@ -16,10 +17,13 @@ class AdminCategoryController extends CController
         $this->view->setTemplateAfter('admin');
     }
 
-    public function listAction($page = 1) {
+    public function listAction() {
         $this->tag->prependTitle($this->trans->_('Список категорий'));
 
         $maxCats = 5;
+
+        $params = $this->dispatcher->getParams();
+        $page = isset($params[0]) ? $params[0] : 1;
 
         $countOfCats = $this->db->fetchColumn("SELECT COUNT(*) FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at", [$this->config->lang]);
 
@@ -79,7 +83,7 @@ class AdminCategoryController extends CController
             if ($noErrors) {
                 $this->flash->success('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was created successful!');
 
-                return $this->response->redirect("/admin/category/edit/" . $cat['id']);
+                return $this->response->redirect('/' . $this->config->lang . "/admin/category/edit/" . $cat['id']);
             }
         }
 
@@ -188,6 +192,6 @@ class AdminCategoryController extends CController
             $this->flash->success('Категория #' . $categoryId . ' удалена!');
         }
 
-        return $this->response->redirect("/admin/category/list");
+        return $this->response->redirect('/' . $this->config->lang . "/admin/category/list");
     }
 }

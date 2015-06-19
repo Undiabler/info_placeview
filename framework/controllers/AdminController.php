@@ -17,7 +17,8 @@ class AdminController extends CController
     public function indexAction() {
         if (!$this->user->isAdmin()) {
             return $this->response->redirect(array(
-                "for" => "admin_login"
+                "for" => "admin_login",
+                "language" => $this->config->lang
             ));
         }
 
@@ -27,7 +28,8 @@ class AdminController extends CController
     public function loginAction() {
         if ($this->user->isAdmin()) {
             return $this->response->redirect(array(
-                "for" => "admin"
+                "for" => "admin",
+                "language" => $this->config->lang
             ));
         }
 
@@ -44,7 +46,8 @@ class AdminController extends CController
                 $this->user->setAttr(1, 'Admins', new User());
 
                 return $this->response->redirect(array(
-                    "for" => "admin"
+                    "for" => "admin",
+                    "language" => $this->config->lang
                 ));
             } else {
                 $this->view->setVar('message','Wrong username/password');
@@ -59,7 +62,8 @@ class AdminController extends CController
         }
 
         return $this->response->redirect(array(
-            "for" => "admin_login"
+            "for" => "admin_login",
+            "language" => $this->config->lang
         ));
     }
 }

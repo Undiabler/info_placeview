@@ -41,7 +41,7 @@ class Loader {
 
 				/*$eventsManager = $di->getShared('eventsManager');
 
-				$logger = new FileLogger((string)(realpath(dirname(__FILE__) . '/logs/db.log')));
+				$logger = new FileLogger((string)(realpath(dirname(__FILE__) . '/logs/db.log'))); // TODO: fix getting filepath for multiplatform
 
 				// Слушаем все события БД
 				$eventsManager->attach('db', function($event, $connection) use ($logger) {

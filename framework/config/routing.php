@@ -2,31 +2,32 @@
 
 $router = new \Phalcon\Mvc\Router(false);
 
-$router->add("/{language:[a-z]{2}}/", [
+$router->removeExtraSlashes(true); // router must remove the extra slashes in the handled routes
+
+$router->add("/{language:(ru|en)}", [
 	"controller" => "index",
-	"action" => "index",
-	"language" => "en"
+	"action" => "index"
 ])->setName('home');
 
-$router->add("/admin", [
+$router->add("/{language:(ru|en)}/admin", [
 	"controller" => "admin",
 	"action" => "index"
 ])->setName('admin');
 
-$router->add("/admin/login", [
+$router->add("/{language:(ru|en)}/admin/login", [
 	"controller" => "admin",
 	"action" => "login"
 ])->setName('admin_login');
 
-$router->add("/admin/logout", [
+$router->add("/{language:(ru|en)}/admin/logout", [
 	"controller" => "admin",
 	"action" => "logout"
 ])->setName('admin_logout');
 
-$router->add("/admin/category/:action/:params", [
+$router->add("/{language:(ru|en)}/admin/category/:action/:params", [
 	"controller" => "admin_category",
-	"action" => 1,
-	"params" => 2
+	"action" => 2,
+	"params" => 3
 ]);
 
     //$router->setDefaultController('index');

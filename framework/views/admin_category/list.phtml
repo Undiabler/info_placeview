@@ -3,7 +3,7 @@
 </div>
 
 <ol class="breadcrumb">
-	<li><a href="/admin">Главная</a></li>
+	<li><a href="/<?php echo $this->config->lang ?>/admin">Главная</a></li>
 	<li class="active">Категории</li>
 </ol>
 
@@ -26,8 +26,8 @@
 			<td><?php echo $cat['slug'] ?></td>
 			<td><?php echo $cat['created_at'] ?></td>
 			<td>
-				<a class="btn btn-default btn-xs" href="/admin/category/edit/<?php echo $cat['id'] ?>">Изменить</a>
-				<a class="btn btn-default btn-xs btn-danger" href="/admin/category/delete/<?php echo $cat['id'] ?>">Удалить</a>
+				<a class="btn btn-default btn-xs" href="/<?php echo $this->config->lang ?>/admin/category/edit/<?php echo $cat['id'] ?>">Изменить</a>
+				<a class="btn btn-default btn-xs btn-danger" href="/<?php echo $this->config->lang ?>/admin/category/delete/<?php echo $cat['id'] ?>">Удалить</a>
 			</td>
 		</tr>
 		<?php } ?>
@@ -37,7 +37,7 @@
 	<ul class="pagination">
 		<?php if ($currentPage > 1): ?>
 		<li>
-			<a href="/admin/category/list/<?php echo $currentPage - 1 ?>" aria-label="Назад">
+			<a href="/<?php echo $this->config->lang ?>/admin/category/list/<?php echo $currentPage - 1 ?>" aria-label="Назад">
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
@@ -47,18 +47,18 @@
 				<?php if ($currentPage == $pageNumber): ?>
 					<span><?php echo $pageNumber; ?></span>
 				<?php else: ?>
-					<a href="/admin/category/list/<?php echo $pageNumber ?>"><?php echo $pageNumber ?></a>
+					<a href="/<?php echo $this->config->lang ?>/admin/category/list/<?php echo $pageNumber ?>"><?php echo $pageNumber ?></a>
 				<?php endif ?>
 
 			</li>
 		<?php endforeach ?>
 		<?php if ($currentPage < $maxPages): ?>
 		<li>
-			<a href="/admin/category/list/<?php echo $currentPage + 1 ?>" aria-label="Вперед">
+			<a href="/<?php echo $this->config->lang ?>/admin/category/list/<?php echo $currentPage + 1 ?>" aria-label="Вперед">
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>
 		<?php endif ?>
 	</ul>
 </nav>
-<a class="btn btn-primary" href="/admin/category/create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Создать</a>
+<a class="btn btn-primary" href="/<?php echo $this->config->lang ?>/admin/category/create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Создать</a>

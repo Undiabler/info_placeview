@@ -145,7 +145,50 @@ class Security extends Plugin
 
 
 	public function lang($dispatcher){
-		$lang = $dispatcher->getParam("language");		
+		$language = $dispatcher->getParam("language");
+		$URI = trim($_SERVER['REQUEST_URI']); // trim spaces
+
+		// if language not exists in the route
+		if (!$language) {
+
+			$URI = trim($URI, '/'); // trim slashes
+			$URIarray = explode('/', $URI);
+
+			// check if language not exists in URI, to prevent redirect recursion
+			if (isset($URIarray[0]) && in_array($URIarray[0], (array)$this->config->langs)) {
+				// language exists, should be no redirect (probably 404 page)
+				$this->config->lang = $language;
+			} else {
+				// check if homepage (URL == '')
+				if ($URI == '') {
+					// redirect to homepage with default lang
+					header('HTTP/1.1 301 Moved Permanently');
+					header('Location: /' . $this->config->lang);
+					die();
+				}
+
+				// do redirect to URL with default language with 301 code
+				/*header('HTTP/1.1 301 Moved Permanently');
+				header('Location: /' . $this->config->lang . '/' . $URI);
+				die();*/
+			}
+		} else {
+			// check if route includes slashes an the end
+			if (substr($URI, -1) == '/') {
+				// trim slashes
+				$URI = trim($URI, '/');
+				// redirect to correct URL with 301 code
+				header('HTTP/1.1 301 Moved Permanently');
+				header('Location: /' . $URI);
+				die();
+			}
+
+			// set current language as in route
+			$this->config->lang = $language;
+		}
+
+
+		/*$lang = $dispatcher->getParam("language");
 		if (!$lang) {
 			if (preg_match('/^\/[a-z]{2}\//',$_SERVER['REQUEST_URI'])) return;
 			$new_lang=substr($this->request->getBestLanguage(),0,2);
@@ -158,7 +201,7 @@ class Security extends Plugin
 			}
 		} else {
 			$this->config->lang=$lang;
-		}
+		}*/
 	}
 
 	/**
@@ -170,7 +213,7 @@ class Security extends Plugin
 	public function beforeDispatch(Event $event, Dispatcher $dispatcher)
 	{
 
-		//$this->lang($dispatcher);
+		$this->lang($dispatcher);
 
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
