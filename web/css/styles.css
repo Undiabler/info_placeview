@@ -7189,6 +7189,10 @@ footer a:focus {
   margin-top: 6px;
   margin-bottom: 6px;
 }
+.footer__language {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
 .footer__social {
   padding-left: 0;
   margin-bottom: 0;
