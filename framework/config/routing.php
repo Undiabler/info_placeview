@@ -5,9 +5,14 @@ $router = new \Phalcon\Mvc\Router(false);
 $router->removeExtraSlashes(true); // router must remove the extra slashes in the handled routes
 
 $router->add("/{language:(ru|en)}", [
-	"controller" => "index",
-	"action" => "index"
+	"controller" => "category",
+	"action" => "list"
 ])->setName('home');
+
+$router->add('/{language:(ru|en)}/{slug:[a-z0-9\-]+}', [
+    "controller" => "category",
+    "action" => "view"
+])->setName('category');
 
 $router->add("/{language:(ru|en)}/admin", [
 	"controller" => "admin",
