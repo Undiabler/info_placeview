@@ -269,6 +269,22 @@ class Extra extends Component
         return $this->mb_ucfirst(locale_get_display_language($lang, $lang), 'UTF-8');
     }
 
+    public function isUriMultiLang() {
+        $currentUri = trim($_SERVER['REQUEST_URI']);
+
+        $Uri = trim($currentUri, '/');
+        $UriArray = explode('/', $Uri);
+
+        // check if language exists in current URI
+        return (isset($UriArray[0]) && in_array($UriArray[0], (array)$this->config->langs));
+    }
+
+    public function getUriInLang($lang) {
+        $currentUri = trim($_SERVER['REQUEST_URI']);
+
+        return preg_replace('/^\/\w{2}/', "/$lang", $currentUri);
+    }
+
 
 
 
