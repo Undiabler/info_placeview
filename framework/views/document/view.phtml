@@ -1,25 +1,18 @@
   <!-- PAGE HEADER
     ============================== -->
-    <div class="page__header">
-      <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h3 class="page-header__title"><i class="fa fa-tag"></i> <?php echo $doc['name'] ?></h3>
-                <ol class="breadcrumb page-header__breadcrumb">
-                    <li><a href="<?php echo $this->extra->url([
-                            'for' => 'home'
-                        ]) ?>"><?php echo $t->_('Home') ?></a></li>
-                    <li><a href="<?php echo $this->extra->url([
-                            'for' => 'category',
-                            'slug' => $cat['slug']
-                        ]) ?>"><?php echo $cat['name'] ?></a></li>
-                    <li class="active"><?php echo $doc['name'] ?></li>
-                </ol>
-            </div>
-        </div>
-      </div>
-    </div>
-
+  <?php $this->partial("widgets/page_header", [
+      'header' => $doc['name'],
+      'breadcrumbs' => [
+          [
+              'link' => $this->extra->url([
+                  'for' => 'category',
+                  'slug' => $cat['slug']
+              ]),
+              'name' => $cat['name']
+          ],
+          $doc['name']
+      ]
+  ]); ?>
 
     <!-- PAGE CONTENT
     ============================== -->

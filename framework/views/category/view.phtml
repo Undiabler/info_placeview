@@ -1,21 +1,11 @@
 <!-- PAGE HEADER
     ============================== -->
-    <div class="page__header">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h3 class="page-header__title"><i class="fa fa-tag"></i> <?php echo $cat['name'] ?></h3>
-            <ol class="breadcrumb page-header__breadcrumb">
-              <li><a href="<?php echo $this->extra->url([
-                      'for' => 'home'
-                  ]) ?>">Главная</a></li>
-              <li class="active"><?php echo $cat['name'] ?></li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<?php $this->partial("widgets/page_header", [
+    'header' => $cat['name'],
+    'breadcrumbs' => [
+        $cat['name']
+    ]
+]); ?>
 
     <!-- PAGE CONTENT
     ============================== -->
