@@ -8948,6 +8948,9 @@ iframe[src="about:blank"] {
   margin-top: 18px;
   margin-bottom: 18px;
 }
+.blog__item {
+    overflow: hidden;
+}
 .blog__item + .blog__item {
   margin-top: 27px;
   padding-top: 27px;
