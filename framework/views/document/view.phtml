@@ -21,7 +21,7 @@
         <div class="col-sm-3 col-md-2">
 
           <!-- Gategories -->
-          <h3 class="header">Категории</h3>
+          <h3 class="header"><?php echo $t->_('Categories') ?></h3>
           <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
               <?php foreach($cats as $_cat): ?>
                   <a href="<?php echo $this->extra->url([
