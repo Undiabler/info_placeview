@@ -11,15 +11,13 @@
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="footer__copyright">
-                Copyright 2015
-                <a href="http://placeview.in/">
-                  Placeview.in
-                </a>. All Rights Reserved.
+                Copyright <?php echo date('Y') ?>
+                <a href="http://placeview.in/">Placeview.in </a>. <?php echo $t->_('All Rights Reserved.') ?>
               </div>
             </div>
               <div class="col-xs-12 col-sm-4">
                   <div class="footer__language">
-                      <label for="language">Language:</label>
+                      <label for="language"><?php echo $t->_('Choose your language') ?>:</label>
                       <select id="language" onchange="window.location.href = this.value;">
                           <?php foreach($this->config->langs as $lang): ?>
                           <option value="<?php echo $this->extra->getUriInLang($lang) ?>"<?php if($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>

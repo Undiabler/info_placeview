@@ -3,6 +3,8 @@
          'Loading...' => 'Загрузка...',
          'Home' => 'Главная',
          'Categories' => 'Главная',
+         'All Rights Reserved.' => 'Все права защищены.',
+         'Choose your language' => 'Выбор языка',
 		'search'=>'Поиск',
 
 		'feed'=>'Лента туров',
