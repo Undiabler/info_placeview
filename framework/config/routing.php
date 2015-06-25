@@ -14,6 +14,11 @@ $router->add('/{language:(ru|en)}/{slug:[a-z0-9\-]+}', [
     "action" => "view"
 ])->setName('category');
 
+$router->add('/{language:(ru|en)}/{cat_slug:[a-z0-9\-]+}/{doc_slug:[a-z0-9\-]+}', [
+    "controller" => "document",
+    "action" => "view"
+])->setName('doc');
+
 $router->add("/{language:(ru|en)}/admin", [
 	"controller" => "admin",
 	"action" => "index"

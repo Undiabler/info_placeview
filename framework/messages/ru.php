@@ -1,5 +1,6 @@
 <?php return
  	 array(
+         'Home' => 'Главная',
 		'search'=>'Поиск',
 
 		'feed'=>'Лента туров',
