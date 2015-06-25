@@ -1,16 +1,13 @@
 <?php 
 
-$langs = $this->config->langs;
-
-if (preg_match("/^\/\w{2}\//",$_SERVER['REQUEST_URI'] )) {
-
-$c_lang = $this->config->lang;
+if ($this->extra->isUriMultiLang()) {
+    $langs = $this->config->langs;
+    $c_lang = $this->config->lang;
 
     foreach ($langs as $lang) {
-		if ($lang==$c_lang) continue;
-		$new_l=preg_replace('/^\/\w{2}\//',"/$lang/",$_SERVER['REQUEST_URI']);
+		if ($lang == $c_lang) continue;
     ?>
-<link rel="alternate" href="<?='http'.(isset($_SERVER['HTTPS'])?'s':'').'://'.$_SERVER['HTTP_HOST'].$new_l?>" hreflang="<?=strtolower($lang)?>" />
+<link rel="alternate" href="<?='http'.(isset($_SERVER['HTTPS'])?'s':'').'://'.$_SERVER['HTTP_HOST'].$this->extra->getUriInLang($lang)?>" hreflang="<?=strtolower($lang)?>" />
 	<?php 
 	}
 } 

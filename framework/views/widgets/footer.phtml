@@ -21,9 +21,8 @@
                   <div class="footer__language">
                       <label for="language">Language:</label>
                       <select id="language" onchange="window.location.href = this.value;">
-                          <?php $currentURI = $this->router->getRewriteUri() ?>
                           <?php foreach($this->config->langs as $lang): ?>
-                          <option value="<?php echo str_replace("/{$this->config->lang}", "/{$lang}", $currentURI) ?>"<?php if($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>
+                          <option value="<?php echo $this->extra->getUriInLang($lang) ?>"<?php if($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>
                           <?php endforeach ?>
                       </select>
                   </div>
