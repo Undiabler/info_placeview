@@ -4,9 +4,10 @@
       'header' => $doc['name'],
       'breadcrumbs' => [
           [
-              'link' => $this->extra->url([
+              'link' => $this->url->get([
                   'for' => 'category',
-                  'slug' => $cat['slug']
+                  'slug' => $cat['slug'],
+                  'language' => $this->config->lang
               ]),
               'name' => $cat['name']
           ],
@@ -24,9 +25,10 @@
           <h3 class="header"><?php echo $t->_('Categories') ?></h3>
           <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
               <?php foreach($cats as $_cat): ?>
-                  <a href="<?php echo $this->extra->url([
+                  <a href="<?php echo $this->url->get([
                       'for' => 'category',
-                      'slug' => $_cat['slug']
+                      'slug' => $_cat['slug'],
+                      'language' => $this->config->lang
                   ]) ?>" class="list-group-item<?php if($_cat['id'] == $cat['id']): ?> active<?php endif ?>"><?php echo $_cat['name'] ?></a>
               <?php endforeach ?>
           </div> <!--  / .list-group -->
@@ -43,9 +45,10 @@
                 <h3 class="blog__title"><?php echo $doc['name'] ?></h3>
                 <ul class="blog__info">
                   <li><time datetime="<?php echo $doc['date'] ?>"><?php echo $doc['formatted_time'] ?></time></li>
-                  <li><a href="<?php echo $this->extra->url([
+                  <li><a href="<?php echo $this->url->get([
                           'for' => 'category',
-                          'slug' => $cat['slug']
+                          'slug' => $cat['slug'],
+                          'language' => $this->config->lang
                       ]) ?>"><?php echo $cat['name'] ?></a></li>
                   <li><a href="#"><i class="fa fa-comments-o"></i> 2</a></li>
                 </ul>

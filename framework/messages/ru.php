@@ -1,5 +1,6 @@
 <?php return
  	 array(
+         'Loading...' => 'Загрузка...',
          'Home' => 'Главная',
          'Categories' => 'Главная',
 		'search'=>'Поиск',

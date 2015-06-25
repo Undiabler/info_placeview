@@ -161,26 +161,6 @@ class Extra extends Component
         return $rows;
     }
 
-    public function url($array) {
-        if (!array_key_exists('language', $array)) {
-            $array['language'] = $this->config->lang;
-        }
-        return $this->url->get($array);
-    }
-
-    public function linkTo($array){
-    	$i_a=$array[array_keys($array)[0]];
-    	$lang = ['language'=>$this->config->lang];
-    	if (is_array($i_a)) {
-    		$array[array_keys($array)[0]]=array_merge($i_a,$lang);
-    	} else {
-    		$array = array_merge($array,$lang);
-    	}
-
-    	return $this->tag->linkTo($array);
-
-    }
-
     public function urlBuild($params=[]){
 
         $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
