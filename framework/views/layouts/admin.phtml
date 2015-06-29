@@ -1,10 +1,15 @@
 <?php
 $menu = [
-	'/' . $this->config->lang . '/admin' => 'Главная',
-	'/' . $this->config->lang . '/admin/category/list' => 'Категории',
-	'/' . $this->config->lang . '/admin/document/list' => 'Документы'
+	'/' . $this->config->lang . '/admin' => $t->_('Главная'),
+	'/' . $this->config->lang . '/admin/category/list' => $t->_('Категории'),
+	'/' . $this->config->lang . '/admin/document/list' => $t->_('Документы')
 ];
 ?>
+<script src="/js/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({
+        selector: 'textarea.wysiwyg',
+        language: '<?php echo $this->config->lang ?>'
+    });</script>
 <div class="container">
 	<?php $this->flash->output() ?>
 
@@ -13,7 +18,7 @@ $menu = [
 		<?php foreach ($menu as $menuItemLink => $menuItemName): ?>
 		<li<?php if ($menuItemLink == $this->router->getRewriteUri()):?> class="active"<?php endif ?>><a href="<?php echo $menuItemLink ?>"><?php echo $menuItemName ?></a></li>
 		<?php endforeach ?>
-		<li class="navbar-right"><a href="/<?php echo $this->config->lang ?>/admin/logout">Выйти</a></li>
+		<li class="navbar-right"><a href="/<?php echo $this->config->lang ?>/admin/logout"><?php echo $t->_('Выйти') ?></a></li>
 	</ul>
 	<?php endif ?>
 

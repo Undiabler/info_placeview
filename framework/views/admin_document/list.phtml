@@ -1,0 +1,68 @@
+<div class="page-header">
+	<h3><?php echo $t->_('Список документов') ?></h3>
+</div>
+
+<ol class="breadcrumb">
+	<li><a href="/<?php echo $this->config->lang ?>/admin"><?php echo $t->_('Главная') ?></a></li>
+	<li class="active"><?php echo $t->_('Документы') ?></li>
+</ol>
+
+<table class="table table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th><?php echo $t->_('ID') ?></th>
+			<th><?php echo $t->_('Название') ?></th>
+			<th><?php echo $t->_('Slug') ?></th>
+			<th><?php echo $t->_('Категория') ?></th>
+			<th><?php echo $t->_('Создано') ?></th>
+			<th><?php echo $t->_('Действия') ?></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<?php foreach ($docs as $doc) { ?>
+		<tr>
+			<td><?php echo $doc['id'] ?></td>
+			<td><?php echo $doc['name'] ?></td>
+			<td><?php echo $doc['slug'] ?></td>
+			<td><?php echo $doc['category_name'] ?></td>
+			<td><?php echo $doc['created_at'] ?></td>
+			<td>
+				<a class="btn btn-default btn-xs" href="/<?php echo $this->config->lang ?>/admin/document/edit/<?php echo $doc['id'] ?>"><?php echo $t->_('Изменить') ?></a>
+				<a class="btn btn-default btn-xs btn-danger" href="/<?php echo $this->config->lang ?>/admin/document/delete/<?php echo $doc['id'] ?>" onclick="return confirm('<?php echo $t->_('Вы уверены что хотите удалить документ') ?> #<?php echo $doc['id'] ?>?');"><?php echo $t->_('Удалить') ?></a>
+			</td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+<?php if ($maxPages > 1): ?>
+<nav>
+	<ul class="pagination">
+		<?php if ($currentPage > 1): ?>
+		<li>
+			<a href="/<?php echo $this->config->lang ?>/admin/category/list/<?php echo $currentPage - 1 ?>" aria-label="<?php echo $t->_('Назад') ?>">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<?php endif ?>
+		<?php foreach($pages as $pageNumber): ?>
+			<li<?php if ($currentPage == $pageNumber): ?> class="active"<?php endif ?>>
+				<?php if ($currentPage == $pageNumber): ?>
+					<span><?php echo $pageNumber; ?></span>
+				<?php else: ?>
+					<a href="/<?php echo $this->config->lang ?>/admin/document/list/<?php echo $pageNumber ?>"><?php echo $pageNumber ?></a>
+				<?php endif ?>
+
+			</li>
+		<?php endforeach ?>
+		<?php if ($currentPage < $maxPages): ?>
+		<li>
+			<a href="/<?php echo $this->config->lang ?>/admin/document/list/<?php echo $currentPage + 1 ?>" aria-label="<?php echo $t->_('Вперед') ?>">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+		<?php endif ?>
+	</ul>
+</nav>
+<?php endif ?>
+<a class="btn btn-primary" href="/<?php echo $this->config->lang ?>/admin/document/create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <?php echo $t->_('Создать') ?></a>

@@ -1,0 +1,90 @@
+<style>
+	.nav-tabs {
+		border-radius: 3px 3px 0 0;
+		box-shadow: none;
+		border: 1px solid #ccc;
+	}
+
+	.nav-tabs li.active {
+		box-shadow: 0 2px 0 #fff;
+	}
+
+	.tab-content {
+		border: 1px solid #ccc;
+		overflow: hidden;
+		padding: 5px 20px;
+		border-top: none;
+		border-radius: 0 0 3px 3px;
+	}
+</style>
+
+
+<div class="page-header">
+	<h3>Новый документ</h3>
+</div>
+
+<ol class="breadcrumb">
+	<li><a href="/<?php echo $this->config->lang ?>/admin">Главная</a></li>
+	<li><a href="/<?php echo $this->config->lang ?>/admin/document/list">Документы</a></li>
+	<li class="active">Новый документ</li>
+</ol>
+
+<div>
+	<form action="/<?php echo $this->config->lang ?>/admin/document/create" method="post" class="form-horizontal">
+		<input type="hidden" name="doc[id]" value="<?php echo $doc['id'] ?>">
+		<input type="hidden" name="doc[category_id]" value="<?php echo $doc['category_id'] ?>">
+		<div class="form-group">
+			<label for="slug" class="col-sm-2 control-label">Slug</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="slug" disabled="disabled" value="<?php echo $doc['slug'] ?>">
+				<input type="hidden"  name="doc[slug]" value="<?php echo $doc['slug'] ?>">
+                <p class="help-block">Slug будет создан автоматически.</p>
+			</div>
+		</div>
+
+        <div class="form-group">
+            <label for="category" class="col-sm-2 control-label">Category</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="category" name="doc[category_id]">
+                    <?php foreach($cats as $cat): ?>
+                    <option value="<?php echo $cat['id'] ?>"><?php echo $cat['name'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Перевод</label>
+			<div class="col-sm-10">
+				<ul class="nav nav-tabs" role="tablist">
+					<?php foreach ($this->config['langs'] as $lang): ?>
+						<li role="presentation"<?php if ($lang == $this->config->lang): ?> class="active"<?php endif ?>><a href="#translation-<?php echo $lang ?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo strtoupper($lang) ?></a></li>
+					<?php endforeach ?>
+				</ul>
+
+				<div class="tab-content">
+					<?php foreach ($this->config['langs'] as $lang): ?>
+						<div role="tabpanel" class="tab-pane<?php if ($lang == $this->config->lang): ?> active<?php endif ?>" id="translation-<?php echo $lang ?>">
+							<input type="hidden" name="doc[translation][<?php echo $lang ?>][id]" value="<?php echo $doc['translation'][$lang]['id'] ?>">
+							<div class="form-group col-sm-12">
+								<label for="name-<?php echo $lang ?>" class="control-label">Название</label>
+								<input type="text" class="form-control" id="name-<?php echo $lang ?>" placeholder="Название" name="doc[translation][<?php echo $lang ?>][name]" value="<?php echo $doc['translation'][$lang]['name'] ?>">
+							</div>
+							<div class="form-group col-sm-12">
+								<label for="text-<?php echo $lang ?>" class="control-label">Контент</label>
+								<textarea class="form-control wysiwyg" id="text-<?php echo $lang ?>" name="doc[translation][<?php echo $lang ?>][text]" rows="3"><?php echo $doc['translation'][$lang]['text'] ?></textarea>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default">Сохранить</button>
+				<a class="btn btn-secondary" href="/<?php echo $this->config->lang ?>/admin/document/list">Отмена</a>
+			</div>
+		</div>
+	</form>
+</div>

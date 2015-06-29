@@ -2,7 +2,7 @@
  	 array(
          'Loading...' => 'Загрузка...',
          'Home' => 'Главная',
-         'Categories' => 'Главная',
+         'Categories' => 'Категории',
          'All Rights Reserved.' => 'Все права защищены.',
          'Choose your language' => 'Выбор языка',
 		'search'=>'Поиск',

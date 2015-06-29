@@ -40,6 +40,12 @@ $router->add("/{language:(ru|en)}/admin/category/:action/:params", [
 	"params" => 3
 ]);
 
+$router->add("/{language:(ru|en)}/admin/document/:action/:params", [
+    "controller" => "admin_document",
+    "action" => 2,
+    "params" => 3
+]);
+
     //$router->setDefaultController('index');
     //$router->setDefaultAction('index');
 
