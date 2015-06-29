@@ -25,6 +25,11 @@ class CategoryController extends CController
         $q->setFetchMode(Phalcon\Db::FETCH_ASSOC);
         $cat = $q->fetch();
 
+        if (!$cat) return $this->dispatcher->forward([
+            'controller' => 'error',
+            'action' => 'error404'
+        ]);
+
         $this->tag->prependTitle($cat['name']);
 
         $q = $this->db->query("SELECT * FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE d.category_id = ? AND dt.lang = ?",
