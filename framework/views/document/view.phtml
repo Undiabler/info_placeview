@@ -1,159 +1,73 @@
-  <!-- PAGE HEADER
-    ============================== -->
-  <?php $this->partial("widgets/page_header", [
-      'header' => $doc['name'],
-      'breadcrumbs' => [
-          [
-              'link' => $this->url->get([
-                  'for' => 'category',
-                  'slug' => $cat['slug'],
-                  'language' => $this->config->lang
-              ]),
-              'name' => $cat['name']
-          ],
-          $doc['name']
-      ]
-  ]); ?>
+<!-- PAGE HEADER
+  ============================== -->
+<?php $this->partial("widgets/page_header", [
+    'header' => $doc['name'],
+    'breadcrumbs' => [
+        [
+            'link' => $this->url->get([
+                'for' => 'category',
+                'slug' => $cat['slug'],
+                'language' => $this->config->lang
+            ]),
+            'name' => $cat['name']
+        ],
+        $doc['name']
+    ]
+]); ?>
 
-    <!-- PAGE CONTENT
-    ============================== -->
-    <div class="container">
-      <div class="row">
+<!-- PAGE CONTENT
+============================== -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-3 col-md-2">
 
-          <!-- Gategories -->
-          <h3 class="header"><?php echo $t->_('Categories') ?></h3>
-          <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
-              <?php foreach($cats as $_cat): ?>
-                  <a href="<?php echo $this->url->get([
-                      'for' => 'category',
-                      'slug' => $_cat['slug'],
-                      'language' => $this->config->lang
-                  ]) ?>" class="list-group-item<?php if($_cat['id'] == $cat['id']): ?> active<?php endif ?>"><?php echo $_cat['name'] ?></a>
-              <?php endforeach ?>
-          </div> <!--  / .list-group -->
+            <!-- Gategories -->
+            <h3 class="header"><?php echo $t->_('Categories') ?></h3>
+
+            <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
+                <?php foreach ($cats as $_cat): ?>
+                    <a href="<?php echo $this->url->get([
+                        'for' => 'category',
+                        'slug' => $_cat['slug'],
+                        'language' => $this->config->lang
+                    ]) ?>"
+                       class="list-group-item<?php if ($_cat['id'] == $cat['id']): ?> active<?php endif ?>"><?php echo $_cat['name'] ?></a>
+                <?php endforeach ?>
+            </div>
+            <!--  / .list-group -->
         </div>
         <div class="col-sm-9 col-md-10">
-          
-          <!-- Typography -->
-          <div class="ui__section" id="ui_typography">
-            <div class="blog__items">
-            <div class="blog__item">
-              <div class="blog__content">
-                <h3 class="blog__title"><?php echo $doc['name'] ?></h3>
-                <ul class="blog__info">
-                    <?php
-                    $doc['time'] = strtotime($doc['created_at']);
-                    ?>
-                    <li><time datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time></li>
-                  <li><a href="<?php echo $this->url->get([
-                          'for' => 'category',
-                          'slug' => $cat['slug'],
-                          'language' => $this->config->lang
-                      ]) ?>"><?php echo $cat['name'] ?></a></li>
-                  <li><a href="#"><i class="fa fa-comments-o"></i> 2</a></li>
-                </ul>
-                <div class="blog__body" id="article_info">
-                  <!--img src="/img/general_1.jpg" alt="..." class="img-responsive blog__img"-->
-                  <?php echo $doc['text'] ?>
-                </div>
-              </div>
-            </div> <!-- / .blog__item -->
-                <?php /*
-            <!-- New comment -->
-            <div class="comment comment_new">
-              <div class="comment__author_img">
-                <img class="img-responsive" alt="..." src="img/photo_4.jpg">
-              </div>
-              <div class="comment__content">
-                <form>
-                  <div class="form-group">
-                    <label for="comment-new__textarea" class="sr-only">Enter your comment</label>
-                    <textarea class="form-control" rows="2" id="comment-new__textarea" placeholder="Enter your comment"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Send Comment</button>
-                </form>
-              </div> <!-- / .comment__content -->
-            </div> <!-- / .comment__new -->
 
-            <!-- Comments header -->
-            <div class="comment__header">
-              <span>List of Comments</span>
+            <!-- Typography -->
+            <div class="ui__section" id="ui_typography">
+                <div class="blog__items">
+                    <div class="blog__item">
+                        <div class="blog__content">
+                            <h3 class="blog__title"><?php echo $doc['name'] ?></h3>
+                            <ul class="blog__info">
+                                <?php
+                                $doc['time'] = strtotime($doc['created_at']);
+                                ?>
+                                <li>
+                                    <time
+                                        datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $doc['discuss_url'] ? $doc['discuss_url'] : '#discuss' ?>"><i class="fa fa-comments-o"></i> Обсудить</a>
+                                </li>
+                            </ul>
+                            <div class="blog__body" id="article_info">
+                                <img src="<?php echo $doc['preview_image'] ? $doc['preview_image'] : '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('Превью') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
+                                <?php echo $doc['text'] ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / .blog__item -->
+                </div>
             </div>
-
-            <!-- All comments -->
-            <div class="comment">
-              <div class="comment__author_img">
-                <img src="img/photo_1.jpg" alt="..." class="img-responsive">
-              </div>
-              <div class="comment__content">
-                <div class="comment__author_name">John Doe</div>
-                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
-                </div>
-              </div> <!-- / .comment__content -->
-            </div> <!-- / .comment -->
-            <div class="comment comment_answer_1">
-              <div class="comment__author_img">
-                <img src="img/photo_2.jpg" alt="..." class="img-responsive">
-              </div>
-              <div class="comment__content">
-                <div class="comment__author_name">Judy Doe</div>
-                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
-                </div>
-              </div> <!-- / .comment__content -->
-            </div> <!-- / .comment -->
-            <div class="comment comment_answer_2">
-              <div class="comment__author_img">
-                <img src="img/photo_3.jpg" alt="..." class="img-responsive">
-              </div>
-              <div class="comment__content">
-                <div class="comment__author_name">Richard Roe</div>
-                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
-                </div>
-              </div> <!-- / .comment__content -->
-            </div> <!-- / .comment -->
-            <div class="comment">
-              <div class="comment__author_img">
-                <img src="img/photo_4.jpg" alt="..." class="img-responsive">
-              </div>
-              <div class="comment__content">
-                <div class="comment__author_name">John Doe</div>
-                <time datetime="2015-01-30" class="comment__date">February 02, 2015</time>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque gravida, est non tempus pharetra, erat velit convallis diam, quis blandit neque nulla a nulla. Quisque fringilla lacinia erat, at maximus erat bibendum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <div class="btn-group pull-right" role="group" aria-label="comment__actions">
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-times"></i> Remove</a>
-                  <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-reply"></i> Answer</a>
-                </div>
-              </div> <!-- / .comment__content -->
-            </div> <!-- / .comment -->
-            */?>
-          </div>
-          </div> <!-- / .ui__section -->
+            <!-- / .ui__section -->
         </div>
-      </div> <!-- / .row -->
     </div>
+    <!-- / .row -->
+</div>
     

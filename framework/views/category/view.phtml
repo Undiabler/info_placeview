@@ -9,99 +9,77 @@
 
 ?>
 
-    <!-- PAGE CONTENT
-    ============================== -->
-    <div class="container">
-      <div class="row">
-          <div class="col-sm-3 col-md-2">
+<!-- PAGE CONTENT
+============================== -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
 
-              <!-- Gategories -->
-              <h3 class="header"><?php echo $t->_('Categories') ?></h3>
-              <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
-                  <?php foreach($cats as $_cat): ?>
-                      <a href="<?php echo $this->url->get([
-                          'for' => 'category',
-                          'slug' => $_cat['slug'],
-                          'language' => $this->config->lang
-                      ]) ?>" class="list-group-item<?php if($_cat['id'] == $cat['id']): ?> active<?php endif ?>"><?php echo $_cat['name'] ?></a>
-                  <?php endforeach ?>
-              </div> <!--  / .list-group -->
-          </div>
-          <div class="col-sm-9 col-md-10">
+            <!-- Gategories -->
+            <h3 class="header"><?php echo $t->_('Categories') ?></h3>
 
-          <div class="blog__items">
-              <?php if ($docs): ?>
-            <?php foreach($docs as $doc): ?>
-            <div class="blog__item">
-              <!--img src="/img/general_1.jpg" alt="..." class="img-responsive blog__img hidden-xs"-->
-              <div class="blog__content">
-                <h3 class="blog__title">
-                  <?php echo $this->tag->linkTo([
-                      [
-                          'for' => 'doc',
-                          'language' =>  $this->config->lang,
-                          'cat_slug' => $cat['slug'],
-                          'doc_slug' => $doc['slug']
-                      ],
-                      $doc['name']
-                  ]) ?>
-                </h3>
-                <ul class="blog__info">
-                    <?php
-                    $doc['time'] = strtotime($doc['created_at']);
-                    ?>
-                  <li><time datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time></li>
-                  <li>
-                    <?php echo $this->tag->linkTo([
-                        [
-                            'for' => 'category',
-                            'language' =>  $this->config->lang,
-                            'slug' => $cat['slug']
-                        ],
-                        $cat['name']
-                    ]) ?>
-                  </li>
-                  <li><a href="<?php echo $this->url->get([
-                          'for' => 'doc',
-                          'cat_slug' => $cat['slug'],
-                          'doc_slug' => $doc['slug'],
-                          'language' => $this->config->lang
-                      ]) ?>#comments"><i class="fa fa-comments-o"></i> Обсудить</a></li>
-                </ul>
-                <div class="blog__body">
-                  <?php echo $doc['text'] ?>
-                </div>
-              </div>
-            </div> <!-- / .blog__item -->
-            <?php endforeach ?>
-          <?php else: ?>
-              <div class="blog__item">
-                  <div class="blog__item"><?php echo $t->_('Документов не найдено') ?></div>
-              </div>
-            <?php endif ?>
-            <?php /*<div class="blog__item">
-              <img src="/img/general_2.jpg" alt="..." class="img-responsive blog__img hidden-xs">
-              <div class="blog__item">
-                <h3 class="blog__title">
-                  <a href="blog-post.html">Ut eget purus ut ante imperdiet feugiat quis vel elit. Donec imperdiet enim quis risus</a>
-                </h3>
-                <ul class="blog__info">
-                  <li><time datetime="2015-01-29">January 29, 2015</time></li>
-                  <li><a href="#">Bootstrap</a></li>
-                  <li><a href="#"><i class="fa fa-comments-o"></i> 4</a></li>
-                </ul>
-                <div class="blog__body">
-                  Nam ultrices, orci sit amet dignissim dignissim, tellus elit consequat dui, eu venenatis urna nisi non est. Aliquam egestas pulvinar ornare. Aenean et vulputate lacus. Ut eget purus ut ante imperdiet feugiat quis vel elit. Donec imperdiet enim quis risus porttitor congue. Vestibulum vel tristique urna. Pellentesque nulla leo, laoreet sed luctus eu, dapibus id lorem. Pellentesque eu tincidunt odio. Proin imperdiet bibendum mauris, ut bibendum odio mollis id.
-                </div>
-              </div>
-            </div> <!-- / .blog__item -->*/ ?>
-          </div> <!-- / .blog__items -->
-          <!-- Pager -->
-          <!--ul class="pager pull-right">
-            <li class="disabled"><a href="#">Previous</a></li>
-            <li><a href="#">Next</a></li>
-          </ul-->
-          <div class="clearfix"></div>
+            <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
+                <?php foreach ($cats as $_cat): ?>
+                    <a href="<?php echo $this->url->get([
+                        'for' => 'category',
+                        'slug' => $_cat['slug'],
+                        'language' => $this->config->lang
+                    ]) ?>"
+                       class="list-group-item<?php if ($_cat['id'] == $cat['id']): ?> active<?php endif ?>"><?php echo $_cat['name'] ?></a>
+                <?php endforeach ?>
+            </div>
+            <!--  / .list-group -->
         </div>
-      </div>
+        <div class="col-sm-9 col-md-10">
+
+            <div class="blog__items">
+                <?php if ($docs): ?>
+                    <?php foreach ($docs as $doc): ?>
+                        <div class="blog__item">
+                            <img src="<?php echo $doc['preview_image'] ? $doc['preview_image'] : '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('Превью') . ' ' . $doc['name'] ?>" class="img-responsive blog__img hidden-xs">
+
+                            <div class="blog__content">
+                                <h3 class="blog__title">
+                                    <?php echo $this->tag->linkTo([
+                                        [
+                                            'for' => 'doc',
+                                            'language' => $this->config->lang,
+                                            'cat_slug' => $cat['slug'],
+                                            'doc_slug' => $doc['slug']
+                                        ],
+                                        $doc['name']
+                                    ]) ?>
+                                </h3>
+                                <ul class="blog__info">
+                                    <?php
+                                    $doc['time'] = strtotime($doc['created_at']);
+                                    ?>
+                                    <li>
+                                        <time datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo $doc['discuss_url'] ? $doc['discuss_url'] : '#discuss' ?>"><i class="fa fa-comments-o"></i> Обсудить</a>
+                                    </li>
+                                </ul>
+                                <div class="blog__body">
+                                    <?php echo $doc['text'] ?>
+                                </div>
+                            </div>
+                        </div> <!-- / .blog__item -->
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <div class="blog__item">
+                        <div class="blog__item"><?php echo $t->_('Документов не найдено') ?></div>
+                    </div>
+                <?php endif ?>
+            </div>
+            <!-- / .blog__items -->
+            <!-- Pager -->
+            <!--ul class="pager pull-right">
+              <li class="disabled"><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul-->
+            <div class="clearfix"></div>
+        </div>
     </div>
+</div>
