@@ -42,7 +42,10 @@
               <div class="blog__content">
                 <h3 class="blog__title"><?php echo $doc['name'] ?></h3>
                 <ul class="blog__info">
-                  <li><time datetime="<?php echo $doc['date'] ?>"><?php echo $doc['formatted_time'] ?></time></li>
+                    <?php
+                    $doc['time'] = strtotime($doc['created_at']);
+                    ?>
+                    <li><time datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time></li>
                   <li><a href="<?php echo $this->url->get([
                           'for' => 'category',
                           'slug' => $cat['slug'],
