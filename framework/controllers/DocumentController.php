@@ -10,7 +10,7 @@ class DocumentController extends CController
     }
 
     public function viewAction($lang, $cat_slug, $doc_slug) {
-        $locale = Locale::acceptFromHttp($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+        //$locale = Locale::acceptFromHttp($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
         //echo $locale;
         //die();

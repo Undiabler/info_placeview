@@ -37,7 +37,13 @@ class CategoryController extends CController
         $q->setFetchMode(Phalcon\Db::FETCH_ASSOC);
         $docs = $q->fetchAll();
 
-        $this->view->setVar("cat", $cat);
-        $this->view->setVar("docs", $docs);
+        $cats = $this->extra->getSql("SELECT c.id, c.slug, ct.name FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at",
+            [$this->config->lang]);
+
+        $this->view->setVars([
+            'cats' => $cats,
+            'docs' => $docs,
+            'cat' => $cat
+        ]);
     }
 }
