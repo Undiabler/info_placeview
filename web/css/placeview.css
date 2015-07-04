@@ -13,3 +13,23 @@
 #tree span.features__intro{
 	font-size: 16px;
 }
+/* FF fix */
+a:active, a:focus {
+    outline: none !important;
+}
+/* Fixed tabs an admin panel */
+.nav-tabs {
+    border-radius: 3px 3px 0 0;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+.nav-tabs li.active {
+    box-shadow: 0 2px 0 #fff;
+}
+.tab-content {
+    border: 1px solid #ccc;
+    overflow: hidden;
+    padding: 5px 20px;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+}

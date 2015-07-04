@@ -6,10 +6,35 @@ $menu = [
 ];
 ?>
 <script src="/js/tinymce/tinymce.min.js"></script>
-<script>tinymce.init({
-        selector: 'textarea.wysiwyg',
-        language: '<?php echo $this->config->lang ?>'
-    });</script>
+<script src="/js/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+<script>
+    tinymce.init({
+        selector: "textarea.wysiwyg",theme: "modern",width: 680,height: 300,
+        language: '<?php echo $this->config->lang ?>',
+        plugins: [
+            "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+            "table contextmenu directionality emoticons paste textcolor filemanager"
+        ],
+        toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+        toolbar2: "| filemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+        image_advtab: true ,
+
+        external_filemanager_path:"/js/tinymce/plugins/filemanager/",
+        filemanager_title:"Responsive Filemanager" ,
+        external_plugins: { "filemanager" : "/js/tinymce/plugins/filemanager/plugin.min.js"}
+    });
+
+    $('.fancybox').fancybox();
+
+    $('.iframe-btn').fancybox({
+        'width'     : 900,
+        'height'    : 900,
+        'type'      : 'iframe',
+        'autoScale'	: false
+    });
+</script>
 <div class="container">
 	<?php $this->flash->output() ?>
 

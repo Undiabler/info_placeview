@@ -1,48 +1,28 @@
-<style>
-	.nav-tabs {
-		border-radius: 3px 3px 0 0;
-		box-shadow: none;
-		border: 1px solid #ccc;
-	}
-
-	.nav-tabs li.active {
-		box-shadow: 0 2px 0 #fff;
-	}
-
-	.tab-content {
-		border: 1px solid #ccc;
-		overflow: hidden;
-		padding: 5px 20px;
-		border-top: none;
-		border-radius: 0 0 3px 3px;
-	}
-</style>
-
-
 <div class="page-header">
-	<h3>Изменить "<?php echo $doc['translation'][$this->config->lang]['name'] ?>"</h3>
+    <h3><?php echo $isNew ? $t->_('doc_create') : $t->_('doc_edit', ['doc_name' => $doc['translation'][$this->config->lang]['name']]) ?></h3>
 </div>
 
 <ol class="breadcrumb">
-	<li><a href="/<?php echo $this->config->lang ?>/admin">Главная</a></li>
-	<li><a href="/<?php echo $this->config->lang ?>/admin/document/list">Документы</a></li>
-	<li class="active"><?php echo $doc['translation'][$this->config->lang]['name'] ?></li>
+    <li><a href="<?php echo $this->url->get("/{$this->config->lang}/admin") ?>"><?php echo $t->_('home') ?></a></li>
+    <li><a href="<?php echo $this->url->get("/{$this->config->lang}/admin/document/list") ?>"><?php echo $t->_('docs') ?></a></li>
+	<li class="active"><?php echo $isNew ? $t->_('new_doc') : $doc['translation'][$this->config->lang]['name'] ?></li>
 </ol>
 
 <div>
-	<form action="/<?php echo $this->config->lang ?>/admin/document/edit/<?php echo $doc['id'] ?>" method="post" class="form-horizontal">
+	<form action="<?php echo $this->url->get($isNew ? "/{$this->config->lang}/admin/document/create" : "/{$this->config->lang}/admin/document/edit/{$doc['id']}") ?>" method="post" class="form-horizontal">
 		<input type="hidden" name="doc[id]" value="<?php echo $doc['id'] ?>">
 		<div class="form-group">
-			<label for="slug" class="col-sm-2 control-label">Slug</label>
-			<div class="col-sm-10">
+			<label for="slug" class="col-sm-2 control-label">Slug *</label>
+			<div class="col-sm-3">
                 <input type="text" class="form-control" id="slug" disabled="disabled" value="<?php echo $doc['slug'] ?>">
-                <input type="hidden"  name="doc[slug]" value="<?php echo $doc['slug'] ?>">
+                <input type="hidden" name="doc[slug]" value="<?php echo $doc['slug'] ?>">
+                <?php if($isNew): ?><p class="help-block">Slug будет создан автоматически.</p><?php endif ?>
 			</div>
 		</div>
 
         <div class="form-group">
-            <label for="category" class="col-sm-2 control-label">Категория</label>
-            <div class="col-sm-10">
+            <label for="category" class="col-sm-2 control-label">Категория *</label>
+            <div class="col-sm-3">
                 <select class="form-control" id="category" name="doc[category_id]">
                     <?php foreach($cats as $cat): ?>
                         <option value="<?php echo $cat['id'] ?>"<?php if($cat['id'] == $doc['category_id']): ?> selected="selected"<?php endif?>><?php echo $cat['name'] ?></option>
@@ -51,37 +31,62 @@
             </div>
         </div>
 
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Перевод</label>
-			<div class="col-sm-10">
-				<ul class="nav nav-tabs" role="tablist">
-					<?php foreach ($doc['translation'] as $docTranslationLang => $docTranslation): ?>
-						<li role="presentation"<?php if ($docTranslationLang == $this->config->lang): ?> class="active"<?php endif ?>><a href="#translation-<?php echo $docTranslationLang ?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo strtoupper($docTranslationLang) ?></a></li>
-					<?php endforeach ?>
-				</ul>
+        <div class="form-group">
+            <label for="preview_image" class="col-sm-2 control-label">Превью</label>
+            <div class="col-sm-3">
 
-				<div class="tab-content">
-					<?php foreach ($doc['translation'] as $docTranslationLang => $docTranslation): ?>
-					<div role="tabpanel" class="tab-pane<?php if ($docTranslationLang == $this->config->lang): ?> active<?php endif ?>" id="translation-<?php echo $docTranslationLang ?>">
-						<input type="hidden" name="doc[translation][<?php echo $docTranslationLang ?>][id]" value="<?php echo $docTranslation['id'] ?>">
-						<div class="form-group col-sm-12">
-							<label for="name-<?php echo $docTranslationLang ?>" class="control-label">Название</label>
-							<input type="text" class="form-control" id="name-<?php echo $docTranslationLang ?>" placeholder="Название" name="doc[translation][<?php echo $docTranslationLang ?>][name]" value="<?php echo $docTranslation['name'] ?>">
-						</div>
-						<div class="form-group col-sm-12">
-							<label for="text-<?php echo $docTranslationLang ?>" class="control-label">Контент</label>
-							<textarea class="form-control wysiwyg" id="text-<?php echo $docTranslationLang ?>" name="doc[translation][<?php echo $docTranslationLang ?>][text]" rows="3"><?php echo $docTranslation['text'] ?></textarea>
-						</div>
-					</div>
-					<?php endforeach ?>
-				</div>
+                <a href="<?php echo $doc['preview_image'] ? : '#' ?>" class="thumbnail fancybox"<?php if (!$doc['preview_image']) { echo ' style="display: none;"'; } ?>>
+                    <img id="preview_image_img" src="<?php echo $doc['preview_image'] ?>">
+                </a>
+
+
+                <div class="input-group">
+                    <input type="text" id="preview_image" class="form-control" placeholder="Выберете изображение" name="doc[preview_image]" value="<?php echo $doc['preview_image'] ?>">
+                    <span class="input-group-btn">
+                        <a href="/js/tinymce/plugins/filemanager/dialog.php?type=1&field_id=preview_image&lang=<?php echo $this->config->lang ?>&relative_url=1&popup=0" class="btn btn-default iframe-btn" type="button">Выбрать</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="discuss_url" class="col-sm-2 control-label">Ссылка на обсуждение</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="doc[discuss_url]" id="discuss_url" value="<?php echo $doc['discuss_url'] ?>">
+            </div>
+        </div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Перевод *</label>
+			<div class="col-sm-10">
+                <ul class="nav nav-tabs" role="tablist">
+                    <?php foreach ($this->config['langs'] as $lang): ?>
+                        <li role="presentation"<?php if ($lang == $this->config->lang): ?> class="active"<?php endif ?>><a href="#translation-<?php echo $lang ?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo strtoupper($lang) ?></a></li>
+                    <?php endforeach ?>
+                </ul>
+
+                <div class="tab-content">
+                    <?php foreach ($this->config['langs'] as $lang): ?>
+                        <div role="tabpanel" class="tab-pane<?php if ($lang == $this->config->lang): ?> active<?php endif ?>" id="translation-<?php echo $lang ?>">
+                            <input type="hidden" name="doc[translation][<?php echo $lang ?>][id]" value="<?php echo $doc['translation'][$lang]['id'] ?>">
+                            <div class="form-group col-sm-12">
+                                <label for="name-<?php echo $lang ?>" class="control-label">Название *</label>
+                                <input type="text" class="form-control" id="name-<?php echo $lang ?>" placeholder="Название" name="doc[translation][<?php echo $lang ?>][name]" value="<?php echo $doc['translation'][$lang]['name'] ?>">
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="text-<?php echo $lang ?>" class="control-label">Контент *</label>
+                                <textarea class="form-control wysiwyg" id="text-<?php echo $lang ?>" name="doc[translation][<?php echo $lang ?>][text]" rows="3"><?php echo $doc['translation'][$lang]['text'] ?></textarea>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Сохранить</button>
-				<a class="btn btn-secondary" href="/<?php echo $this->config->lang ?>/admin/document/list">Отмена</a>
+				<button type="submit" class="btn btn-default"><?php echo $isNew ? 'Создать' : 'Сохранить' ?></button>
+				<a class="btn btn-secondary" href="<?php echo $this->url->get("/{$this->config->lang}/admin/document/list") ?>">Отмена</a>
 			</div>
 		</div>
 	</form>

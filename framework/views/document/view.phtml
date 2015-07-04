@@ -53,11 +53,11 @@
                                         datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $doc['discuss_url'] ? $doc['discuss_url'] : '#discuss' ?>"><i class="fa fa-comments-o"></i> Обсудить</a>
+                                    <a href="<?php echo $doc['discuss_url'] ?: '#discuss' ?>"><i class="fa fa-comments-o"></i> Обсудить</a>
                                 </li>
                             </ul>
                             <div class="blog__body" id="article_info">
-                                <img src="<?php echo $doc['preview_image'] ? $doc['preview_image'] : '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('Превью') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
+                                <img src="<?php echo $doc['preview_image'] ?: '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('Превью') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
                                 <?php echo $doc['text'] ?>
                             </div>
                         </div>

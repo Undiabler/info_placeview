@@ -131,14 +131,17 @@ function apply_img(file,type_file,external){
     var path = $('#cur_dir').val();
     var base_url = $('#base_url').val();
     var track = $('#track').val();
+    var img_url = base_url+path+file;
     if (external=="") {
 	var target = window_parent.document.getElementsByClassName('mce-img_'+track);
 	var closed = window_parent.document.getElementsByClassName('mce-filemanager');
-	$(target).val(base_url+path+file);
+	$(target).val(img_url);
 	$(closed).find('.mce-close').trigger('click');
     }else{
 	var target = window_parent.document.getElementById(external);
-	$(target).val(base_url+path+file);
+	var targetImg = window_parent.document.getElementById(external + '_img');
+	$(target).val(img_url);
+	$(targetImg).prop('src',img_url).parent().prop('href',img_url).show();
 	close_window();
     }
 }
