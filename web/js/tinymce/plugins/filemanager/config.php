@@ -2,6 +2,7 @@
 if($_SESSION["verify"] != "FileManager4TinyMCE") die('forbidden');
 
 $root = rtrim($_SERVER['DOCUMENT_ROOT'],'/'); // don't touch this configuration
+$root = str_replace(DIRECTORY_SEPARATOR, '/', $root); // fix for Windows
 
 //**********************
 //Path configuration
