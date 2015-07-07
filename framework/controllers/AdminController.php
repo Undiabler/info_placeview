@@ -6,8 +6,7 @@ class AdminController extends CController
 {
 
     public function initialize() {
-        $this->tag->setTitle(' | Админ Панель');
-        //$this->session->get("auth")
+        $this->tag->setTitle(' | ' . $this->trans->_('admin_panel'));
     }
 
     public function indexAction() {
@@ -18,7 +17,7 @@ class AdminController extends CController
             ));
         }
 
-        $this->tag->prependTitle($this->trans->_('Главная'));
+        $this->tag->prependTitle($this->trans->_('home'));
     }
 
     public function loginAction() {
@@ -29,7 +28,7 @@ class AdminController extends CController
             ));
         }
 
-        $this->tag->prependTitle($this->trans->_('Авторизация'));
+        $this->tag->prependTitle($this->trans->_('auth'));
 
         if ($this->request->isPost()) {
             //Проверка переменных отрпвленых через POST
@@ -38,7 +37,9 @@ class AdminController extends CController
             $password = sha1($password);
 
             if ($username == 'admin' && $password == sha1('admin')) {
-                $this->flash->success('Добро пожаловать, ' . $username . '!');
+                $this->flash->success($this->trans->_('auth_welcome', [
+                    'username' => $username
+                ]));
                 $this->user->setAttr(1, 'Admins', new User());
 
                 return $this->response->redirect(array(
@@ -46,7 +47,7 @@ class AdminController extends CController
                     "language" => $this->config->lang
                 ));
             } else {
-                $this->flash->error('Неправильное <b>Имя пользователя</b> или <b>Пароль</b>');
+                $this->flash->error($this->trans->_('wrong_credentials'));
             }
         }
     }

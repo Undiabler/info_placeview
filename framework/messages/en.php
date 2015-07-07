@@ -9,6 +9,15 @@
 
 
     // Admin panel
+    'admin_panel' => 'Admin panel',
+
+    // Auth
+    'auth' => 'Authorization',
+    'auth_welcome' => 'Welcome, %username%',
+    'wrong_credentials' => 'Wrong <b>Username</b> or <b>Password</b>',
+    'username' => 'Username',
+    'password' => 'Password',
+    'enter_btn' => 'Enter',
 
     // Docs
     'doc_create' => 'Create a document',

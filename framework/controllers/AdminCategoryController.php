@@ -12,7 +12,7 @@ class AdminCategoryController extends CController
             ));
         }
 
-        $this->tag->setTitle(' | Админ Панель');
+        $this->tag->setTitle(' | ' . $this->trans->_('admin_panel'));
         $this->view->setTemplateAfter('admin');
     }
 

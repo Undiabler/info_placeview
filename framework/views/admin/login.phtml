@@ -1,24 +1,24 @@
 <div class="page-header">
-    <h3>Авторизация</h3>
+    <h3><?php echo $t->_('auth') ?></h3>
 </div>
 
 <div>
     <form action="/<?php echo $this->config->lang ?>/admin/login" method="post" class="form-horizontal">
         <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">Имя</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="username" placeholder="Имя" name="username">
+            <label for="username" class="col-sm-2 control-label"><?php echo $t->_('username') ?></label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="username" placeholder="<?php echo $t->_('username') ?>" name="username">
             </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Пароль</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="password" placeholder="Пароль" name="password">
+            <label for="password" class="col-sm-2 control-label"><?php echo $t->_('password') ?></label>
+            <div class="col-sm-3">
+                <input type="password" class="form-control" id="password" placeholder="<?php echo $t->_('password') ?>" name="password">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Вход</button>
+            <div class="col-sm-offset-2 col-sm-3">
+                <button type="submit" class="btn btn-primary"><?php echo $t->_('enter_btn') ?></button>
             </div>
         </div>
     </form>

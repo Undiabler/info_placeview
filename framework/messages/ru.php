@@ -9,6 +9,15 @@
 
 
     // Admin panel
+    'admin_panel' => 'Админка',
+
+    // Auth
+    'auth' => 'Авторизация',
+    'auth_welcome' => 'Добро пожаловать, %username%',
+    'wrong_credentials' => 'Неправильное <b>Имя пользователя</b> или <b>Пароль</b>',
+    'username' => 'Имя пользователя',
+    'password' => 'Пароль',
+    'enter_btn' => 'Вход',
 
     // Docs
     'doc_create' => 'Создать документ',

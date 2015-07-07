@@ -12,7 +12,7 @@ class AdminDocumentController extends CController
             ));
         }
 
-        $this->tag->setTitle(' | ' . $this->trans->_('Админ Панель'));
+        $this->tag->setTitle(' | ' . $this->trans->_('admin_panel'));
         $this->view->setTemplateAfter('admin');
     }
 
