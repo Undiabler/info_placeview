@@ -38,118 +38,127 @@ class AdminCategoryController extends CController
         $this->view->setVar("maxCats", $maxCats);
     }
 
-    public function createAction() {
-        $this->tag->prependTitle($this->trans->_('Создать категорию'));
-
-        $cat = [];
-
+    private function createEditAction($categoryId = null, $isNew = true) {
         if ($this->request->isPost()) {
             $cat = $this->request->getPost('cat');
 
+            if ($isNew) {
+                // create a slug from category name
+                $cat['slug'] = $this->extra->urlSlug($cat['translation'][$this->config->lang]['name'], ['transliterate' => true]);
+            }
+
             $errors = false;
 
-            $success = $this->db->query("INSERT INTO category (slug) VALUES (:slug)", [
-                'slug' => $cat['slug']
-            ]);
-
-            $cat['id'] = null;
-
-            if ($success) {
-                $cat['id'] = $this->db->lastInsertId();
-
-                foreach ($cat['translation'] as $lang => $catTranslation) {
-                    $success = $this->db->query("INSERT INTO category_translate (category_id, lang, name, description) VALUES (:category_id, :lang, :name, :description)", [
-                        'name' => $catTranslation['name'],
-                        'description' => $catTranslation['description'],
-                        'category_id' => $cat['id'],
-                        'lang' => $lang
-                    ]);
-
-                    if ($success) {
-                        $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
-                    } else {
-                        //$this->flash->error('Insert into category_translate was failed! Category ID #' . $cat['id']);
-                        $errors = true;
-                    }
-                }
-
-
-            } else {
-                //$this->flash->error('Category "' . $cat['translation'][$this->config->lang]['name'] . '" was not created!');
+            // Validation
+            if (!$cat['slug']) {
                 $errors = true;
-            }
-
-            if (!$errors) {
-                $this->flash->success('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" создана!');
-
-                return $this->response->redirect('/' . $this->config->lang . "/admin/category/edit/" . $cat['id']);
             } else {
-                $this->flash->error('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" не была создана!');
-            }
-        }
-
-        $this->view->setVar("cat", $cat);
-    }
-
-    public function editAction($categoryId) {
-
-        if ($this->request->isPost()) {
-            $cat = $this->request->getPost('cat');
-
-            $errors = false;
-
-            $this->db->query("UPDATE category SET slug = :slug WHERE id = :category_id", [
-                'slug' => $cat['slug'],
-                'category_id' => $categoryId
-            ]);
-
-            $updated = true;
-
-            foreach ($cat['translation'] as $lang => $catTranslation) {
-                if ($catTranslation['id']) {
-                    $result = $this->db->fetchColumn("SELECT COUNT(*) FROM category_translate WHERE id = ?", [$catTranslation['id']]);
-
-                    if ((int)$result > 0) {
-                        $this->db->query("UPDATE category_translate SET name = :name, description = :description WHERE category_id = :category_id AND lang = :lang", [
-                            'name' => $catTranslation['name'],
-                            'description' => $catTranslation['description'],
-                            'category_id' => $categoryId,
-                            'lang' => $lang
-                        ]);
-                    } else {
-                        $updated = false;
-                    }
-
-                } else {
-                    $updated = false;
-                }
-
-                if (!$updated) {
-                    $success = $this->db->query("INSERT INTO category_translate (category_id, lang, name, description) VALUES (:category_id, :lang, :name, :description)", [
-                        'name' => $catTranslation['name'],
-                        'description' => $catTranslation['description'],
-                        'category_id' => $categoryId,
-                        'lang' => $lang
-                    ]);
-
-                    if ($success) {
-                        $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
-                    } else {
-                        //$this->flash->error('Insert into category_translate was failed! Category ID #' . $categoryId);
+                foreach ($cat['translation'] as $lang => $catTranslation) {
+                    if (!$catTranslation['name'] || !$catTranslation['description']) {
                         $errors = true;
                     }
                 }
             }
 
             if (!$errors) {
-                $this->flash->success('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" обновлена!');
-            } else {
-                $this->flash->error('Категория "' . $cat['translation'][$this->config->lang]['name'] . '" не была обновлена!');
+                if ($isNew) {
+
+                    $success = $this->db->query("INSERT INTO category (slug) VALUES (:slug)", [
+                        'slug' => $cat['slug']
+                    ]);
+
+                    $cat['id'] = null;
+
+                    if ($success) {
+                        $cat['id'] = $this->db->lastInsertId();
+
+                        foreach ($cat['translation'] as $lang => $catTranslation) {
+                            $success = $this->db->query("INSERT INTO category_translate (category_id, lang, name, description) VALUES (:category_id, :lang, :name, :description)", [
+                                'name' => $catTranslation['name'],
+                                'description' => $catTranslation['description'],
+                                'category_id' => $cat['id'],
+                                'lang' => $lang
+                            ]);
+
+                            if ($success) {
+                                $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
+                            } else {
+                                $errors = true;
+                            }
+                        }
+
+                    } else {
+                        $errors = true;
+                    }
+                // If not New
+                } else {
+                    $this->db->query("UPDATE category SET slug = :slug WHERE id = :category_id", [
+                        'slug' => $cat['slug'],
+                        'category_id' => $categoryId
+                    ]);
+
+                    $updated = true;
+
+                    foreach ($cat['translation'] as $lang => $catTranslation) {
+                        if ($catTranslation['id']) {
+                            $result = $this->db->fetchColumn("SELECT COUNT(*) FROM category_translate WHERE id = ?", [$catTranslation['id']]);
+
+                            if ((int)$result > 0) {
+                                $this->db->query("UPDATE category_translate SET name = :name, description = :description WHERE category_id = :category_id AND lang = :lang", [
+                                    'name' => $catTranslation['name'],
+                                    'description' => $catTranslation['description'],
+                                    'category_id' => $categoryId,
+                                    'lang' => $lang
+                                ]);
+                            } else {
+                                $updated = false;
+                            }
+
+                        } else {
+                            $updated = false;
+                        }
+
+                        if (!$updated) {
+                            $success = $this->db->query("INSERT INTO category_translate (category_id, lang, name, description) VALUES (:category_id, :lang, :name, :description)", [
+                                'name' => $catTranslation['name'],
+                                'description' => $catTranslation['description'],
+                                'category_id' => $categoryId,
+                                'lang' => $lang
+                            ]);
+
+                            if ($success) {
+                                $cat['translation'][$lang]['id'] = $this->db->lastInsertId();
+                            } else {
+                                $errors = true;
+                            }
+                        }
+                    }
+                }
             }
-        } else {
+
+            if (!$errors) {
+                $this->flash->success($this->trans->_($isNew ? 'cat_created' : 'cat_edited', [
+                    'cat_name' => $cat['translation'][$this->config->lang]['name']
+                ]));
+
+                if ($isNew) {
+                    return $this->response->redirect('/' . $this->config->lang . "/admin/category/edit/" . $cat['id']);
+                }
+            } else {
+                $this->flash->error($this->trans->_($isNew ? 'cat_not_created' : 'cat_not_edited', [
+                    'cat_name' => $cat['translation'][$this->config->lang]['name']
+                ]));
+            }
+
+        } elseif(!$isNew) {
             $q = $this->db->query("SELECT * FROM category WHERE id = ?", [$categoryId]);
             $q->setFetchMode(Phalcon\Db::FETCH_ASSOC);
             $cat = $q->fetch();
+
+            if (!$cat) return $this->dispatcher->forward([
+                'controller' => 'error',
+                'action' => 'error404'
+            ]);
 
             $q = $this->db->query("SELECT * FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE c.id = ?", [$cat['id']]);
             $q->setFetchMode(Phalcon\Db::FETCH_ASSOC);
@@ -166,9 +175,24 @@ class AdminCategoryController extends CController
             }
         }
 
-        $this->view->setVar("cat", $cat);
+        $this->view->setVars([
+            'cat' => $cat,
+            'isNew' => $isNew
+        ]);
 
-        $this->tag->prependTitle($this->trans->_('Изменить "' . $cat['translation'][$this->config->lang]['name'] . '"'));
+        $this->tag->prependTitle($this->trans->_($isNew ? 'cat_create' : 'cat_edit', [
+            'cat_name' => $cat['translation'][$this->config->lang]['name']
+        ]));
+
+        $this->view->pick('admin_category/edit');
+    }
+
+    public function createAction() {
+        $this->createEditAction();
+    }
+
+    public function editAction($categoryId) {
+        $this->createEditAction($categoryId, false);
     }
 
     public function deleteAction($categoryId) {

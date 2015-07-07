@@ -38,10 +38,6 @@ class AdminDocumentController extends CController
         $this->view->setVar("maxDocs", $maxDocs);
     }
 
-    public function createAction() {
-        $this->createEditAction();
-    }
-
     private function createEditAction($documentId = null, $isNew = true) {
         if ($this->request->isPost()) {
             $doc = $this->request->getPost('doc');
@@ -195,6 +191,10 @@ class AdminDocumentController extends CController
         ]));
 
         $this->view->pick('admin_document/edit');
+    }
+
+    public function createAction() {
+        $this->createEditAction();
     }
 
     public function editAction($documentId) {
