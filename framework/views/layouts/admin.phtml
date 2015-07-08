@@ -1,13 +1,14 @@
 <?php
 $menu = [
-	'/' . $this->config->lang . '/admin' => $t->_('Главная'),
-	'/' . $this->config->lang . '/admin/category/list' => $t->_('Категории'),
-	'/' . $this->config->lang . '/admin/document/list' => $t->_('Документы')
+	'/' . $this->config->lang . '/admin' => $t->_('home'),
+	'/' . $this->config->lang . '/admin/category/list' => $t->_('cats'),
+	'/' . $this->config->lang . '/admin/document/list' => $t->_('docs')
 ];
+$this->assets
+    ->addCss('js/fancybox/jquery.fancybox.css?v=2.1.5');
 ?>
 <script src="/js/tinymce/tinymce.min.js"></script>
 <script src="/js/fancybox/jquery.fancybox.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
 <script>
     tinymce.init({
         selector: "textarea.wysiwyg",theme: "modern",width: 680,height: 300,
@@ -22,7 +23,7 @@ $menu = [
         image_advtab: true ,
 
         external_filemanager_path:"/js/tinymce/plugins/filemanager/",
-        filemanager_title:"Responsive Filemanager" ,
+        filemanager_title: "<?php echo $t->_('filemanager') ?>" ,
         external_plugins: { "filemanager" : "/js/tinymce/plugins/filemanager/plugin.min.js"}
     });
 
@@ -43,7 +44,7 @@ $menu = [
 		<?php foreach ($menu as $menuItemLink => $menuItemName): ?>
 		<li<?php if ($menuItemLink == $this->router->getRewriteUri()):?> class="active"<?php endif ?>><a href="<?php echo $menuItemLink ?>"><?php echo $menuItemName ?></a></li>
 		<?php endforeach ?>
-		<li class="navbar-right"><a href="/<?php echo $this->config->lang ?>/admin/logout"><?php echo $t->_('Выйти') ?></a></li>
+		<li class="navbar-right"><a href="/<?php echo $this->config->lang ?>/admin/logout"><?php echo $t->_('logout_btn') ?></a></li>
 	</ul>
 	<?php endif ?>
 

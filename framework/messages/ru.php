@@ -1,11 +1,15 @@
 <?php return [
     // Common
     'home' => 'Главная',
+    'loading' => 'Загрузка...',
+    'copyright' => 'Копирайт © 2015, <a href="http://placeview.in/">Placeview.in</a>. Все права защищены.',
+    'choose_lang' => 'Выбор языка',
 
 
     // Other
     'docs' => 'Документы',
     'cats' => 'Категории',
+    'filemanager' => 'Менеджер файлов',
 
 
     // Admin panel
@@ -18,6 +22,7 @@
     'username' => 'Имя пользователя',
     'password' => 'Пароль',
     'enter_btn' => 'Вход',
+    'logout_btn' => 'Выйти',
 
     // Docs
     'doc_create' => 'Создать документ',
@@ -37,10 +42,6 @@
     'cat_not_edited' => 'Категория "%cat_name%" не была изменена.',
     'new_cat' => 'Новая категория',
 
-    /*'Loading...' => 'Загрузка...',
-    'Home' => 'Главная',
-    'Categories' => 'Категории',
-    'All Rights Reserved.' => 'Все права защищены.',
-    'Choose your language' => 'Выбор языка',
+    /*
     'All Categories' => 'Все категории',*/
 ];

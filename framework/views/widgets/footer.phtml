@@ -1,40 +1,30 @@
 <!-- FOOTER
     ============================== -->
-    <footer>
+<footer>
+    <div class="footer__hr hidden-xs"></div>
 
-      
-      <div class="footer__hr hidden-xs"></div>
-
-      <!-- Footer Bottom -->
-      <div class="footer_bottom">
+    <!-- Footer Bottom -->
+    <div class="footer_bottom">
         <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <div class="footer__copyright">
-                Copyright <?php echo date('Y') ?>
-                <a href="http://placeview.in/">Placeview.in </a>. <?php echo $t->_('All Rights Reserved.') ?>
-              </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="footer__copyright"><?php echo $t->_('copyright') ?></div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="footer__language">
+                        <label for="language"><?php echo $t->_('choose_lang') ?>:</label>
+                        <select id="language" onchange="window.location.href = this.value;">
+                            <?php foreach ($this->config->langs as $lang): ?>
+                                <option
+                                    value="<?php echo $this->extra->getUriInLang($lang) ?>"<?php if ($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
             </div>
-              <div class="col-xs-12 col-sm-4">
-                  <div class="footer__language">
-                      <label for="language"><?php echo $t->_('Choose your language') ?>:</label>
-                      <select id="language" onchange="window.location.href = this.value;">
-                          <?php foreach($this->config->langs as $lang): ?>
-                          <option value="<?php echo $this->extra->getUriInLang($lang) ?>"<?php if($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>
-                          <?php endforeach ?>
-                      </select>
-                  </div>
-              </div>
-            <div class="col-xs-12 col-sm-4">
-              <ul class="footer__social">
-                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-              </ul>
-            </div>
-          </div> <!-- / .row -->
-        </div> <!-- / .container -->
-      </div> <!-- / .footer_bottom -->
-    </footer>
+            <!-- / .row -->
+        </div>
+        <!-- / .container -->
+    </div>
+    <!-- / .footer_bottom -->
+</footer>

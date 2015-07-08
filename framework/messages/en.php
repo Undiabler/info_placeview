@@ -1,11 +1,15 @@
 <?php return [
     // Common
     'home' => 'Home',
+    'loading' => 'Loading...',
+    'copyright' => 'Copyright © 2015 <a href="http://placeview.in/">Placeview.in</a>. All Rights Reserved.',
+    'choose_lang' => 'Choose your language',
 
 
     // Other
     'docs' => 'Documents',
     'cats' => 'Categories',
+    'filemanager' => 'Filemanager',
 
 
     // Admin panel
@@ -18,6 +22,7 @@
     'username' => 'Username',
     'password' => 'Password',
     'enter_btn' => 'Enter',
+    'logout_btn' => 'Logout',
 
     // Docs
     'doc_create' => 'Create a document',
