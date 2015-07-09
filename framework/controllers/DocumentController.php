@@ -25,8 +25,6 @@ class DocumentController extends CController
             'action' => 'error404'
         ]);
 
-        $this->tag->prependTitle($cat['name']);
-
         $q = $this->db->query("SELECT * FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE d.slug = ? AND dt.lang = ?",
             [$doc_slug, $lang]);
         $q->setFetchMode(Phalcon\Db::FETCH_ASSOC);
@@ -36,6 +34,8 @@ class DocumentController extends CController
             'controller' => 'error',
             'action' => 'error404'
         ]);
+
+        $this->tag->prependTitle($cat['name']);
 
         $this->view->setVars([
             'cats' => $cats,
