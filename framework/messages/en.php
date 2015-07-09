@@ -6,7 +6,6 @@
     'copyright' => 'Copyright © 2015 <a href="http://placeview.in/">Placeview.in</a>. All Rights Reserved.',
     'choose_lang' => 'Choose your language',
 
-
     // Other
     'docs' => 'Documents',
     'cats' => 'Categories',
@@ -17,6 +16,13 @@
     'discuss' => 'Discuss',
     'docs_no_found' => 'No document found',
 
+    // Errors
+    'error' => 'Error',
+    'page_not_found' => 'Not Found',
+    'page_not_found_desc' => 'This page is not available',
+    'page_unauthorized' => 'Unauthorized',
+    'page_unauthorized_desc' => 'Page is not included in the list of allowed to visit',
+    'internal_error' => 'Internal Server Error',
 
     // Admin panel
     'admin_panel' => 'Admin panel',

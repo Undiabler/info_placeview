@@ -6,7 +6,6 @@
     'copyright' => 'Копирайт © 2015, <a href="http://placeview.in/">Placeview.in</a>. Все права защищены.',
     'choose_lang' => 'Выбор языка',
 
-
     // Other
     'docs' => 'Документы',
     'cats' => 'Категории',
@@ -17,6 +16,13 @@
     'discuss' => 'Обсудить',
     'docs_no_found' => 'Документов не найдено',
 
+    // Errors
+    'error' => 'Ошибка',
+    'page_not_found' => 'Страница отсутствует',
+    'page_not_found_desc' => 'Такая страница отсутствует',
+    'page_unauthorized' => 'Страница запрещена',
+    'page_unauthorized_desc' => 'Страница не входит в список разрешенных для посещения',
+    'internal_error' => 'Внутренняя ошибка',
 
     // Admin panel
     'admin_panel' => 'Админка',
