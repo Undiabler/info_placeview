@@ -10,7 +10,7 @@ class CategoryController extends CController
     }
 
     public function listAction() {
-        $this->tag->prependTitle($this->trans->_('All Categories'));
+        $this->tag->prependTitle($this->trans->_('cat_list'));
 
         $cats = $this->extra->getSql("SELECT c.id, c.slug, ct.name, ct.description FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at",
             [$this->config->lang]);

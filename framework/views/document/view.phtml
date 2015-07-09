@@ -22,7 +22,7 @@
         <div class="col-sm-3 col-md-2">
 
             <!-- Gategories -->
-            <h3 class="header"><?php echo $t->_('Categories') ?></h3>
+            <h3 class="header"><?php echo $t->_('cat_list') ?></h3>
 
             <div class="list-group list-group-left ui__sidebar nav affix-top" id="moving-menu" data-spy="affix">
                 <?php foreach ($cats as $_cat): ?>
@@ -53,11 +53,11 @@
                                         datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $doc['discuss_url'] ?: '#discuss' ?>"><i class="fa fa-comments-o"></i> Обсудить</a>
+                                    <a href="<?php echo $doc['discuss_url'] ?: '#discuss' ?>"><i class="fa fa-comments-o"></i> <?php echo $t->_('discuss') ?></a>
                                 </li>
                             </ul>
                             <div class="blog__body" id="article_info">
-                                <img src="<?php echo $doc['preview_image'] ?: '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('Превью') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
+                                <img src="<?php echo $doc['preview_image'] ?: '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('preview') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
                                 <?php echo $doc['text'] ?>
                             </div>
                         </div>

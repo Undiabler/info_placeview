@@ -8,7 +8,7 @@
                     <li><a href="<?php echo $this->url->get([
                             'for' => 'home',
                             'language' => $this->config->lang
-                        ]) ?>"><?php echo $t->_('Home') ?></a></li>
+                        ]) ?>"><?php echo $t->_('home') ?></a></li>
                     <?php for($i = 0, $c = count($breadcrumbs); $i < $c; $i++): ?>
                         <li<?php if($i == $c - 1): ?> class="active"<?php endif ?>>
                             <?php if(is_array($breadcrumbs[$i])): ?>

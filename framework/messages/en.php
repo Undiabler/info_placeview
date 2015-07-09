@@ -1,6 +1,7 @@
 <?php return [
     // Common
     'home' => 'Home',
+    'documentation' => 'Documentation',
     'loading' => 'Loading...',
     'copyright' => 'Copyright © 2015 <a href="http://placeview.in/">Placeview.in</a>. All Rights Reserved.',
     'choose_lang' => 'Choose your language',
@@ -10,6 +11,10 @@
     'docs' => 'Documents',
     'cats' => 'Categories',
     'filemanager' => 'Filemanager',
+    'cat_list' => 'List of categories',
+    'preview' => 'Preview',
+    'discuss' => 'Discuss',
+    'docs_no_found' => 'No document found',
 
 
     // Admin panel

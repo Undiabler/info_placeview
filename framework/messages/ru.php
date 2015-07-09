@@ -1,6 +1,7 @@
 <?php return [
     // Common
     'home' => 'Главная',
+    'documentation' => 'Документация',
     'loading' => 'Загрузка...',
     'copyright' => 'Копирайт © 2015, <a href="http://placeview.in/">Placeview.in</a>. Все права защищены.',
     'choose_lang' => 'Выбор языка',
@@ -10,6 +11,10 @@
     'docs' => 'Документы',
     'cats' => 'Категории',
     'filemanager' => 'Менеджер файлов',
+    'cat_list' => 'Список категорий',
+    'preview' => 'Превью',
+    'discuss' => 'Обсудить',
+    'docs_no_found' => 'Документов не найдено',
 
 
     // Admin panel
@@ -41,7 +46,4 @@
     'cat_edited' => 'Категория "%cat_name%" была изменена.',
     'cat_not_edited' => 'Категория "%cat_name%" не была изменена.',
     'new_cat' => 'Новая категория',
-
-    /*
-    'All Categories' => 'Все категории',*/
 ];
