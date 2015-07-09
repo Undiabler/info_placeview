@@ -19,23 +19,20 @@ class AdminDocumentController extends CController
     public function listAction() {
         $this->tag->prependTitle($this->trans->_('doc_list'));
 
-        $maxDocs = 5;
-
         $params = $this->dispatcher->getParams();
         $page = isset($params[0]) ? $params[0] : 1;
 
         $countOfDocs = $this->db->fetchColumn("SELECT COUNT(*) FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE dt.lang = ? ORDER BY d.created_at", [$this->config->lang]);
 
-        $maxPages = ceil ($countOfDocs / 5);
+        $maxPages = ceil ($countOfDocs / $this->config->max_docs_admin);
 
-        $docs = $this->extra->getSql("SELECT d.id, d.created_at, d.slug, dt.name, ct.name as category_name FROM document d JOIN document_translate dt ON d.id = dt.document_id JOIN category_translate ct ON ct.category_id = d.category_id WHERE dt.lang = ? AND ct.lang = ? ORDER BY d.created_at LIMIT " . (($page - 1) * $maxDocs) . ", " . $maxDocs, [$this->config->lang, $this->config->lang]);
+        $docs = $this->extra->getSql("SELECT d.id, d.created_at, d.slug, dt.name, ct.name as category_name FROM document d JOIN document_translate dt ON d.id = dt.document_id JOIN category_translate ct ON ct.category_id = d.category_id WHERE dt.lang = ? AND ct.lang = ? ORDER BY d.created_at LIMIT " . (($page - 1) * $this->config->max_docs_admin) . ", " . $this->config->max_docs_admin, [$this->config->lang, $this->config->lang]);
 
         $this->view->setVar("docs", $docs);
         $this->view->setVar("currentPage", $page);
         $this->view->setVar("maxPages", $maxPages);
         $this->view->setVar("pages", range(1, $maxPages));
         $this->view->setVar("countOfDocs", $countOfDocs);
-        $this->view->setVar("maxDocs", $maxDocs);
     }
 
     private function createEditAction($documentId = null, $isNew = true) {

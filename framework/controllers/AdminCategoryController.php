@@ -19,23 +19,20 @@ class AdminCategoryController extends CController
     public function listAction() {
         $this->tag->prependTitle($this->trans->_('cat_list'));
 
-        $maxCats = 5;
-
         $params = $this->dispatcher->getParams();
         $page = isset($params[0]) ? $params[0] : 1;
 
         $countOfCats = $this->db->fetchColumn("SELECT COUNT(*) FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at", [$this->config->lang]);
 
-        $maxPages = ceil ($countOfCats / 5);
+        $maxPages = ceil ($countOfCats / $this->config->max_cats_admin);
 
-        $cats = $this->extra->getSql("SELECT c.id, c.created_at, c.slug, ct.name FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at LIMIT " . (($page - 1) * $maxCats) . ", " . $maxCats, [$this->config->lang]);
+        $cats = $this->extra->getSql("SELECT c.id, c.created_at, c.slug, ct.name FROM category c JOIN category_translate ct ON c.id = ct.category_id WHERE ct.lang = ? ORDER BY c.created_at LIMIT " . (($page - 1) * $this->config->max_cats_admin) . ", " . $this->config->max_cats_admin, [$this->config->lang]);
 
         $this->view->setVar("cats", $cats);
         $this->view->setVar("currentPage", $page);
         $this->view->setVar("maxPages", $maxPages);
         $this->view->setVar("pages", range(1, $maxPages));
         $this->view->setVar("countOfCats", $countOfCats);
-        $this->view->setVar("maxCats", $maxCats);
     }
 
     private function createEditAction($categoryId = null, $isNew = true) {

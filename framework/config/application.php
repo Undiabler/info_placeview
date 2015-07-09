@@ -83,7 +83,8 @@ $config = [
     'lang' => 'ru',
     'langs' => ['ru', 'en'],
     'max_docs' => 5,
-    //'max_docs_admin' => 10
+    'max_docs_admin' => 10,
+    'max_cats_admin' => 10
 ];
 
 return new \Phalcon\Config($config);
