@@ -35,7 +35,7 @@ class DocumentController extends CController
             'action' => 'error404'
         ]);
 
-        $this->tag->prependTitle($cat['name']);
+        $this->tag->prependTitle($doc['name']);
 
         $this->view->setVars([
             'cats' => $cats,
