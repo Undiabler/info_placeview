@@ -157,7 +157,7 @@ class Security extends Plugin
 			// check if language not exists in URI, to prevent redirect recursion
 			if (isset($URIarray[0]) && in_array($URIarray[0], (array)$this->config->langs)) {
 				// language exists, should be no redirect (probably 404 page)
-				$this->config->lang = $language;
+				$this->config->lang = $URIarray[0];
 			} else {
 				// check if homepage (URL == '')
 				if ($URI == '') {
