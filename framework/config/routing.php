@@ -14,6 +14,11 @@ $router->add('/{language:(ru|en)}/{slug:[a-z0-9\-]+}', [
     "action" => "view"
 ])->setName('category');
 
+$router->add('/{language:(ru|en)}/{slug:[a-z0-9\-]+}/page/{page:[0-9]+}', [
+    "controller" => "category",
+    "action" => "view"
+])->setName('category_page');
+
 $router->add('/{language:(ru|en)}/{cat_slug:[a-z0-9\-]+}/{doc_slug:[a-z0-9\-]+}', [
     "controller" => "document",
     "action" => "view"

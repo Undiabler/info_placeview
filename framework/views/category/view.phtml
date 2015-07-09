@@ -75,10 +75,74 @@
             </div>
             <!-- / .blog__items -->
             <!-- Pager TODO: create pagination for documents view -->
-            <!--ul class="pager pull-right">
-              <li class="disabled"><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul-->
+
+            <?php if ($maxPages > 1): ?>
+                <ul class="pager pull-right">
+                    <?php if ($currentPage > 1): ?>
+                        <li>
+                            <a href="<?php
+
+                            if ($currentPage == 2) {
+                                echo $this->url->get([
+                                    'for' => 'category',
+                                    'slug' => $cat['slug'],
+                                    'language' => $this->config->lang
+                                ]);
+                            } else {
+                                echo $this->url->get([
+                                    'for' => 'category_page',
+                                    'slug' => $cat['slug'],
+                                    'page' => $currentPage - 1,
+                                    'language' => $this->config->lang
+                                ]);
+                            }
+
+                            ?>" aria-label="<?php echo $t->_('back') ?>">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    <?php endif ?>
+                    <?php foreach($pages as $pageNumber): ?>
+                        <li<?php if ($currentPage == $pageNumber): ?> class="active"<?php endif ?>>
+                            <?php if ($currentPage == $pageNumber): ?>
+                                <span><?php echo $pageNumber; ?></span>
+                            <?php else: ?>
+                                <a href="<?php
+
+                                if ($pageNumber == 1) {
+                                    echo $this->url->get([
+                                        'for' => 'category',
+                                        'slug' => $cat['slug'],
+                                        'language' => $this->config->lang
+                                    ]);
+                                } else {
+                                    echo $this->url->get([
+                                        'for' => 'category_page',
+                                        'slug' => $cat['slug'],
+                                        'page' => $pageNumber,
+                                        'language' => $this->config->lang
+                                    ]);
+                                }
+
+                                ?>"><?php echo $pageNumber ?></a>
+                            <?php endif ?>
+
+                        </li>
+                    <?php endforeach ?>
+                    <?php if ($currentPage < $maxPages): ?>
+                        <li>
+                            <a href="<?php echo $this->url->get([
+                                'for' => 'category_page',
+                                'slug' => $cat['slug'],
+                                'page' => $currentPage + 1,
+                                'language' => $this->config->lang
+                            ]) ?>" aria-label="<?php echo $t->_('forward') ?>">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <?php endif ?>
+                </ul>
+            <?php endif ?>
             <div class="clearfix"></div>
         </div>
     </div>

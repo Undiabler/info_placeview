@@ -81,7 +81,9 @@ $config = [
         'wsdl' => 'http://services.hamrahvas.com/SMSBuffer.asmx?wsdl'
     ],
     'lang' => 'ru',
-    'langs' => ['ru', 'en']
+    'langs' => ['ru', 'en'],
+    'max_docs' => 5,
+    //'max_docs_admin' => 10
 ];
 
 return new \Phalcon\Config($config);
