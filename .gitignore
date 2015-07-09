@@ -1,2 +1,3 @@
 *.log
 web/img/uploads
+web/js/tinymce/plugins/filemanager/thumbs

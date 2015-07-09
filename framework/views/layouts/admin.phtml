@@ -30,10 +30,16 @@ $this->assets
     $('.fancybox').fancybox();
 
     $('.iframe-btn').fancybox({
-        'width'     : 900,
-        'height'    : 900,
-        'type'      : 'iframe',
-        'autoScale'	: false
+        maxWidth	: 800,
+        maxHeight	: 700,
+        fitToView	: false,
+        width		: '100%',
+        height		: '100%',
+        type: 'iframe',
+        autoSize	: false,
+        closeClick	: false,
+        openEffect	: 'none',
+        closeEffect	: 'none'
     });
 </script>
 <div class="container">
