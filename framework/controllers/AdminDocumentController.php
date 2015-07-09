@@ -17,7 +17,7 @@ class AdminDocumentController extends CController
     }
 
     public function listAction() {
-        $this->tag->prependTitle($this->trans->_('Список документов'));
+        $this->tag->prependTitle($this->trans->_('doc_list'));
 
         $maxDocs = 5;
 
@@ -220,9 +220,13 @@ class AdminDocumentController extends CController
         }
 
         if (!$errors) {
-            $this->flash->success('Документ #' . $documentId . ' удален!');
+            $this->flash->success($this->trans->_('doc_deleted', [
+                'doc_id' => $documentId
+            ]));
         } else {
-            $this->flash->error('Документ #' . $documentId . ' не был удален!');
+            $this->flash->error($this->trans->_('doc_not_deleted', [
+                'doc_id' => $documentId
+            ]));
         }
 
         return $this->response->redirect('/' . $this->config->lang . "/admin/document/list");

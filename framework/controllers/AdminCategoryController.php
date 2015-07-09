@@ -17,7 +17,7 @@ class AdminCategoryController extends CController
     }
 
     public function listAction() {
-        $this->tag->prependTitle($this->trans->_('Список категорий'));
+        $this->tag->prependTitle($this->trans->_('cat_list'));
 
         $maxCats = 5;
 
@@ -216,9 +216,13 @@ class AdminCategoryController extends CController
         }
 
         if (!$errors) {
-            $this->flash->success('Категория #' . $categoryId . ' удалена!');
+            $this->flash->success($this->trans->_('cat_deleted', [
+                'cat_id' => $categoryId
+            ]));
         } else {
-            $this->flash->error('Категория #' . $categoryId . ' не была удалена!');
+            $this->flash->error($this->trans->_('cat_not_deleted', [
+                'cat_id' => $categoryId
+            ]));
         }
 
         return $this->response->redirect('/' . $this->config->lang . "/admin/category/list");
