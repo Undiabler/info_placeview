@@ -57,9 +57,11 @@
                                     <li>
                                         <time datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
                                     </li>
-                                    <li>
-                                        <a href="<?php echo $doc['discuss_url'] ? $doc['discuss_url'] : '#discuss' ?>"><i class="fa fa-comments-o"></i> <?php echo $t->_('discuss') ?></a>
-                                    </li>
+                                    <?php if ($doc['discuss_url']): ?>
+                                        <li>
+                                            <a href="<?php echo $doc['discuss_url'] ?>"><i class="fa fa-comments-o"></i> <?php echo $t->_('discuss') ?></a>
+                                        </li>
+                                    <?php endif ?>
                                 </ul>
                                 <div class="blog__body">
                                     <?php echo $doc['text'] ?>
@@ -74,7 +76,6 @@
                 <?php endif ?>
             </div>
             <!-- / .blog__items -->
-            <!-- Pager TODO: create pagination for documents view -->
 
             <?php if ($maxPages > 1): ?>
                 <ul class="pager pull-right">

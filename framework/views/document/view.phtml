@@ -52,9 +52,11 @@
                                     <time
                                         datetime="<?php echo date('Y-m-d', $doc['time']) ?>"><?php echo date('Y-m-d', $doc['time']) ?></time>
                                 </li>
-                                <li>
-                                    <a href="<?php echo $doc['discuss_url'] ?: '#discuss' ?>"><i class="fa fa-comments-o"></i> <?php echo $t->_('discuss') ?></a>
-                                </li>
+                                <?php if ($doc['discuss_url']): ?>
+                                    <li>
+                                        <a href="<?php echo $doc['discuss_url'] ?>"><i class="fa fa-comments-o"></i> <?php echo $t->_('discuss') ?></a>
+                                    </li>
+                                <?php endif ?>
                             </ul>
                             <div class="blog__body" id="article_info">
                                 <img src="<?php echo $doc['preview_image'] ?: '/img/general_doc_preview.jpg' ?>" alt="<?php echo $t->_('preview') . ' ' . $doc['name'] ?>" class="img-responsive blog__img">
