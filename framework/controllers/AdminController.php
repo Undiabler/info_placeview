@@ -17,7 +17,7 @@ class AdminController extends CController
             ));
         }
 
-        $this->tag->prependTitle($this->trans->_('home'));
+        return $this->response->redirect('/' . $this->config->lang . "/admin/document/list");
     }
 
     public function loginAction() {
