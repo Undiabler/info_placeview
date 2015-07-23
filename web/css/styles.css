@@ -1391,7 +1391,7 @@ html {
 }
 
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     line-height: 1.42857143;
     color: #333333;
@@ -1504,7 +1504,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
@@ -7085,7 +7085,7 @@ button.close {
     z-index: 1070;
     display: block;
     visibility: visible;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     font-weight: normal;
     line-height: 1.4;
@@ -7208,7 +7208,7 @@ button.close {
     display: none;
     max-width: 276px;
     padding: 1px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.42857143;
@@ -8835,7 +8835,7 @@ a.list-group-item .list-group-item-text {
 .navbar-brand,
 .navbar-nav > li > a,
 .topbar-nav > li > a {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
     -webkit-transition: color 0.1s;
     -o-transition: color 0.1s;
     transition: color 0.1s;
@@ -9196,11 +9196,11 @@ a {
 }
 
 .pt-sans {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .roboto-slab {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* -------------------- *\
@@ -10199,7 +10199,7 @@ footer {
     background-image: linear-gradient(to bottom, white 0%, #f5f5f5 100%);
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff5f5f5', GradientType=0);
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .pricing__price {
@@ -10289,7 +10289,7 @@ footer {
     margin-bottom: 15px;
     font-size: 18px;
     font-weight: 300;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .authors__intro {
@@ -10404,7 +10404,7 @@ footer {
     margin-bottom: 30px;
     font-size: 22px;
     font-weight: 300;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .feedback__author {
@@ -10475,7 +10475,7 @@ footer {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 300;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .features-alt__title_small {
@@ -10557,7 +10557,7 @@ footer {
 .contact-info__content {
     display: inline-block;
     font-size: 14px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -11184,7 +11184,7 @@ iframe[src="about:blank"] {
     border-bottom-width: 1px !important;
     color: #333333;
     font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* -------------------- *\
