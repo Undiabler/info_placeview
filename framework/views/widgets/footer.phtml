@@ -12,13 +12,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="footer__language">
-                        <label for="language"><?php echo $t->_('choose_lang') ?>:</label>
-                        <select id="language" onchange="window.location.href = this.value;">
-                            <?php foreach ($this->config->langs as $lang): ?>
-                                <option
-                                    value="<?php echo $this->extra->getUriInLang($lang) ?>"<?php if ($lang == $this->config->lang): ?> selected="selected"<?php endif ?>><?php echo $this->extra->getLanguageName($lang) ?></option>
-                            <?php endforeach ?>
-                        </select>
+                        <div class="dropup">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <?php echo $this->extra->getLanguageName($this->config->lang) ?> <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <?php foreach ($this->config->langs as $lang): ?>
+                                    <li<?php if ($lang == $this->config->lang): ?> class="disabled"<?php endif ?>><a href="<?php echo $this->extra->getUriInLang($lang) ?>"><?php echo $this->extra->getLanguageName($lang) ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
