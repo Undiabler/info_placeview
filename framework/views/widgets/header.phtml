@@ -4,7 +4,14 @@
     ============================== -->
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
+
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <!-- Brand name -->
           <a class="navbar-brand" href="<?php echo $this->url->get([
               'for' => 'home',
@@ -13,5 +20,35 @@
             <img src="/img/logo_beta.png">
           </a>
         </div>
+
+        <div class="collapse navbar-collapse">
+          <!-- Navbar links -->
+          <ul class="nav navbar-nav navbar-right">
+
+            <li>
+              <a href="#">
+                 +0-000-000-000
+              </a>
+            </li>
+
+            <li>
+              <a href="http://buy.placeview.in">
+                <i class="fa fa-briefcase"></i> Для бизнеса
+              </a>
+            </li>
+
+            <li>
+              <a href="http://placeview.in">
+                 На сайт
+              </a>
+            </li>
+
+        
+          </ul>
+         
+        </div> <!-- / .navbar-collapse -->
+
+
       </div> <!-- / .container -->
     </div> <!-- / .navbar -->
+
