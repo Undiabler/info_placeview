@@ -33,7 +33,7 @@ class CategoryController extends CController
 
         $page = $page ? $page : 1;
 
-        $countOfDocs = $this->db->fetchColumn("SELECT COUNT(*) FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE dt.lang = ? ORDER BY d.created_at", [$lang]);
+        $countOfDocs = $this->db->fetchColumn("SELECT COUNT(*) FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE d.category_id = ? AND dt.lang = ? ORDER BY d.created_at", [$cat['id'], $lang]);
         $maxPages = ceil ($countOfDocs / $this->config->max_docs);
 
         $docs = $this->extra->getSql("SELECT * FROM document d JOIN document_translate dt ON d.id = dt.document_id WHERE d.category_id = ? AND dt.lang = ? ORDER BY d.created_at LIMIT " . (($page - 1) * $this->config->max_docs) . ", " . $this->config->max_docs,
